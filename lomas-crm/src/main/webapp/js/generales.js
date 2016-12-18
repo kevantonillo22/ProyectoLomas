@@ -1,7 +1,7 @@
 
-/*$('.dropdown-menu a').click(function(e) {
+$('.dropdown-menu a').click(function(e) {
     e.stopPropagation();
-});*/
+});
 
 $( window ).resize(_responsiveTabs);
 $(_responsiveTabs);
