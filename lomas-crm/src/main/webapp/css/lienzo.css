@@ -1,0 +1,13 @@
+cuerpo-select{
+    background-image: url('/clinicas-crm/img/cuadrito.png');
+	background-size: 15;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+

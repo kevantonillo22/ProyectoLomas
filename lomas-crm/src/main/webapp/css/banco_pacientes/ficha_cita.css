@@ -1,0 +1,230 @@
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: rgba(2,2,2,0.15);
+        font: 10pt "Helvetica";
+    }
+    * {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+    .numero{
+    	border-style:solid;
+    	border-width:2px;
+    	padding:10px;
+    }
+    .pie{
+    	width: 90%;
+	    text-align: center;
+	    margin: 0 auto;
+    }
+    .negrita{
+    	font-weight:bolder;
+    	font-size: 16px;
+    }
+    .page {
+        width: 210mm;
+        min-height: 297mm;
+        height: 84mm;
+        padding: 10mm;
+        margin: 10mm auto;
+        border: 1px #D3D3D3 solid;
+        border-radius: 5px;
+        background: white;
+        /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);*/
+    }
+    .subpage {
+        padding: 0mm;
+        /*border: 1px #2980b9 solid;*/
+        height: 257mm;
+        /*outline: 2cm #FFEAEA solid;*/
+    } 
+    
+    @page {
+        size: A4;
+        margin: 0;
+    }
+    @media print {
+        html, body {
+            width: 210mm;
+            height: 296mm;
+            background-color: #ffffff;
+        }
+        .page {
+            margin: 0;
+            border: initial;
+            border-radius: initial;
+            width: initial;
+            min-height: initial;
+            box-shadow: initial;
+            background: initial;
+            page-break-after: always;
+        }
+    }
+    
+    /*forza a que aparezcan las imagenes y el color al momento de imprimir*/
+    @media print and (color) {
+   * {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+   }
+}
+
+table{
+    width: 100%;
+    border-collapse:collapse;
+    margin-top:-1px;
+        
+}
+
+table:nth-child(2) {
+    margin-top: 5mm;
+}
+
+ td {
+    border: 1px solid #00426d;
+    padding:2mm;
+    line-height: 11pt;
+}
+
+th{
+    text-align: left;
+background: #2980b9;
+border: 1px solid #00426d;
+font-family: helvetica;
+color: white;
+padding: 2mm;
+font-size: 3.5mm;
+font-weight: 100;
+}
+
+.centrado{
+    text-align: center;
+}
+
+.encabezado{
+    border:1px solid #00426d;
+    border-radius: 2mm;
+    height:1.5cm;
+    width:100%;    
+}
+.encabezado-izquierda{
+    width:30%;
+    height:100%;
+    float:left;
+    background-image:url('/lomas-crm/img/logo_cub.png');
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.encabezado-central{
+    width:40%;
+    height:100%;
+    float:left;
+}
+.encabezado-derecha{
+    width:30%;height:100%;float:left;
+}
+
+.titulo-ficha-clinica{
+font-size: 4mm;text-align: center;position: relative;top: 50%;font-family: Helvetica;transform:translateY(-50%);font-weight: 900;
+}
+
+.titulo-celda{
+    font-family: Helvetica;
+    font-size: 10pt;
+    font-weight: bolder;
+}
+
+.opcion-marcada{
+    text-align: center;
+    padding: initial;
+    padding-left: 1mm;
+    padding-right: 1mm;
+}
+
+.opcion-check{
+	margin:auto;
+	width: 13px;
+	height: 13px;
+	background-size: cover;
+}
+
+.opcion-true{
+	background-image: url('/clinicas-crm/img/check-0.svg');
+}
+
+.opcion-false{
+	background-image: url('/clinicas-crm/img/check.svg');
+}
+
+.encabezado-true{
+
+}
+
+/*
+Vista de impresion
+*/
+
+.img-icon{
+	width: 16px;
+	  margin-left: 17;
+	  margin-top: 13;
+	  height: 16px;
+	  
+	  background-size: cover;
+	
+	
+}
+.boton:hover{
+		background-color: rgba(255,255,255,0.2);
+		border:hidden;
+	}
+	.boton{
+	width:50;
+	height: 42;
+	float:left;}
+	.grupo-botones{
+	  width: 100;
+  margin: auto;
+  height: 42;
+	}
+#site-body-content {
+		padding: 15px 15px 15px 15px;
+	}
+	
+	#site-bottom-bar {
+		left: 0px;
+		background-color: rgba(0, 0, 0, 0.75);
+		border-top: 1px solid #CCCCCC;
+		top: 0px;
+		font-family: verdana, arial;
+		font-size: 11px;
+		height: 42px;
+		position: fixed;
+		width: 100%;
+		z-index: 1000;
+	}
+	
+	#site-bottom-bar-frame {
+		height: 30px;
+		margin: 0px 10px 0px 10px;
+		position: relative;
+	}
+	
+	#site-bottom-bar-content {
+		text-align: center;
+		padding: 3px 0px 0px 0px;
+	}
+
+	
+	
+	@media print
+{    
+    .no-imprimir
+    {
+        display: none !important;
+    }
+}

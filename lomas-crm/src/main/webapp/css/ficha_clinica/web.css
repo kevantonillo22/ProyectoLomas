@@ -1,0 +1,47 @@
+body{
+	background-color:#e4e4e4;
+	
+}
+.contenedor{
+	padding-left: 5vw;
+	padding-right: 5vw;
+	padding-top: 32px;
+	padding-bottom:15px;
+}
+
+
+small,strong,label,td{
+	font-size: 2.2ex !important;
+  	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+table td{
+	font-size: 1.8ex !important;
+  	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+label{
+	font-size: 1.5ex !important;
+  	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+h4{
+	font-size: 2.2ex !important;
+  	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+label{
+	
+}
+
+
+.papel{
+	background-color:white;
+	min-width:600px;
+	max-width:90vw;
+	margin: 0 auto;
+	text-align:justify;
+	overflow-wrap: break-word;
+	margin-top: 16px;
+}

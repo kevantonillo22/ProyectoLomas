@@ -1,0 +1,73 @@
+@page { 
+	size: US-Letter
+	}
+
+.contenedor{
+	
+	margin-top: 0mm;
+	margin-bottom:10mm;
+	margin-left:10mm;
+	margin-right:10mm;	
+}
+
+.portlet .portlet-body {
+/*padding: 8px;*/
+
+}
+
+
+small,strong{
+	font-size: 9pt !important;
+  	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+h4{
+	color:white !important;
+	font-size: 10pt !important;
+  	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+table td{
+	font-size: 9pt !important;
+  	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+
+
+@media print {
+	.portlet-heading{
+		background-color: #000000 !important;
+		-webkit-print-color-adjust: exact; 
+		color:white;
+		
+	}
+	.warning>td{
+		-webkit-print-color-adjust: exact; 
+		background-color: #fcf8e3;
+	}
+	.portlet{
+		border-color: black !important;
+	}
+	 .pieza,.dibujo,.pieza-odontograma {-webkit-print-color-adjust:exact;}
+}
+
+label{
+	font-size:7pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	
+}
+
+.registro-tratamiento{
+	font-size:7pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	
+}
+
+.papel{
+	text-align:justify;
+
+}
+
+.no-imprimir{
+	display:none;
+}

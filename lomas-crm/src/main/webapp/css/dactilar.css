@@ -1,0 +1,69 @@
+	
+		.dedo{
+		width: 29px;
+		cursor: pointer;
+		border-radius: 18px;
+		display: inline-block;
+		}
+		
+		.dedo.indice{
+		margin-left: 69px;
+		margin-top: 0px;
+		height: 117px;
+		}
+		
+		.dedo.medio{
+		margin-top: 0px;
+		height: 136px;
+		margin-left: 6px;
+		}
+		
+		.dedo.anular{
+		margin-top: 0px;
+		height: 126px;
+		margin-left: 7px;
+		
+		}
+		.dedo.meñique{
+		margin-top: 0px;
+		height: 96px;
+		margin-left:6px;
+		}
+		.dedo.pulgar{
+		margin-left: 27px;
+		margin-top: 116px;
+		width: 36px;
+		height: 80px;
+		position: absolute;
+		-webkit-transform: rotate(-33.5deg);
+		border-radius: 32px;
+		}
+		
+		.dedo:hover{
+		background-color: rgba(20, 255, 0, 0.44);
+		box-shadow: 0px 0px 30px #24BE3D;
+		}
+		
+		.mano{
+		
+		background-size:cover;
+		height:256px; 
+		width:256px;
+		background-image:url('/clinicas-crm/img/hand.png');	
+		}
+		
+		.mano.derecha{
+		float:left;
+		}
+		.mano.izquierda{
+		float:right;
+		-webkit-transform: scaleX(-1);
+		}
+		
+		.tabla td{
+		padding-left:10px;
+		padding-right:10px;
+		}
+		
+		
+		

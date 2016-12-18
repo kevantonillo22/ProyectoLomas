@@ -1,0 +1,105 @@
+@CHARSET "UTF-8";
+body{
+	padding: 5em;
+}
+.imgLogo{
+	max-width:75%;
+	max-height:75%;
+}
+.centrado{
+	margin: 0px auto;
+	text-align:center;
+}
+.encabezado{
+	text-align:right;
+}
+.textoJustificado{
+	text-align:justify;
+}
+.notaAceptacion{
+	margin-left:40px;
+}
+li.sinEstilo{
+    list-style-type: none;
+}
+.divTipoPaciente{
+	border:2px dashed #707070;
+	padding: 1.5em 1em 1em 1em;
+	margin-top: 0.5em;
+}
+.centradoVertical{
+	vertical-align:middle;
+}
+.encabezado{
+	text-align: right;
+}
+input[type="checkbox"]{
+	background-color:black;
+}
+.datosContrato{
+	border: 2px solid black;
+	padding: 1em;
+}
+.saltoPagina{
+	page-break-before: always;
+	height:5em;
+}
+.tabla{
+	display:table;
+	width:100%;
+	table-layout: auto;
+}
+.fila{
+	display:table-row;
+}
+.celda{
+	display:table-cell;
+}
+.cicloAcademico{
+	width:25%;
+}
+.correlativo{
+	width: 25%;
+}
+.fecha{
+	width: 25%
+}
+.tipoContrato{
+	
+}
+.paciente{
+	width:50%;
+}
+.edad{
+	
+}
+.encargado{
+	width:50%;
+}
+.firmaEncargado{
+	
+}
+.direccion{
+	width:50%;
+}
+.identificacion{
+	width:40%;
+}
+.telefono{
+	width:20%;
+}
+.practicante{
+	width:50%;
+}
+.grado{
+	
+}
+.instructor{
+	width:50%;
+}
+.firmaInstructor{}
+.divisionHoja{
+	background-color:#e4e4e4;
+	width:100%;
+	height: 30px;
+}

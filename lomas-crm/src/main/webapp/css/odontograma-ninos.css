@@ -1,0 +1,74 @@
+
+		.pieza {
+			position: relative;
+			width: 11%;
+		
+			float: left;
+			height: 224px;
+			
+			box-sizing: border-box;
+			max-width: 40px;
+			text-align:center;
+			cursor:pointer;	
+		}
+		
+		.pieza-odontograma{
+		background-size: cover;
+		background-position: center;
+		height: 218px;
+		width:100%;
+    	margin-bottom: 8px;
+			margin-top: 8px;
+		
+		}
+		
+		.bottom{ 
+		top: 246px !important;
+		}
+		
+		.invertida{
+		-webkit-transform: scaleX(-1);
+		}
+
+		.cuadrante {
+			width: 216%;
+			/*min-width: 160px;*/
+			float: left;
+			margin-right: auto;
+			margin-left: auto;
+			height: 33%;
+			max-height:222|px;
+			margin-bottom: 32px;
+		}
+		
+		.arcada {
+			
+		}
+		
+		.pieza img {
+    		
+		}
+		
+		.popover-header {
+		    padding:8px 14px;
+		    background-color:#f7f7f7;
+		    border-bottom:1px solid #ebebeb;
+		    -webkit-border-radius:5px 5px 0 0;
+		    -moz-border-radius:5px 5px 0 0;
+		    border-radius:5px 5px 0 0;
+		}
+		.popover-title {
+		    margin:0;
+		    padding:0;
+		    background-color:transparent;
+		    border:none;
+		}
+		.example-popovers {
+		    padding:30px 0;
+		}
+		.acenter {
+		    text-align:center;
+		    margin:30px 0;
+		}
+		
+		

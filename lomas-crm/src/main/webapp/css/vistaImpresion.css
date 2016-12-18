@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+@page{
+	size: auto;   /* auto is the current printer page size */	
+	margin: 0mm;  /* this affects the margin in the printer settings */
+}
+body 
+{
+    background-color:#FFFFFF;
+	margin: 0px;  /* the margin on the content before printing */
+	padding: 5em 7em 5em 5em;
+	font-size:13px;
+}
+.logo{
+	float:left;
+	height:75px;	
+}
+.imgLogo{
+	max-height:75%;
+}
+.encabezado{
+	float:right;
+	text-align:right;
+}
+.impresionInvisible{
+	display:none;
+}
+.saltoPagina{
+	page-break-before: always;
+	height:5em;
+}

@@ -1,0 +1,131 @@
+	select.multiselect,
+		select.multiselect + div.btn-group,
+		select.multiselect + div.btn-group button.multiselect,
+		select.multiselect + div.btn-group.open .multiselect-container{
+		    width:100% !important;
+		}
+	
+	.valor-sondeo{
+		position: absolute;
+		font-size: 12;
+		color: #2980b9;
+	}
+	
+	.sondeo-izquierdo{
+	left:5;
+	}
+	.sondeo-derecho{
+	right: 5;
+	}
+	.sondeo-medio{
+	left:18;
+	}
+	.contenido{
+	cursor:cell;
+	}
+	.titulo-lateral{
+		position: absolute;
+		background: #2980b9;
+		color: white;
+		width: 133px;
+		height: 31px;
+		text-align: center;
+		left: -117px;
+		top: inherit;
+		vertical-align: top;
+		margin-top: -8px;
+		font-size: 8pt;
+		border-radius: 4px 0px 0px 4px;
+		padding: 9px;
+	}
+	
+	.boton-eliminar{
+		position: absolute;
+		left: -18px;
+		margin-top: -3;
+	}
+	
+	.titulo-derecha{
+	display:none;
+	}
+	
+	.dibujo{
+	height: 100%;
+	position: absolute;
+	width: 100%;
+	background-position: center;
+	}
+	
+	.anotacion{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-size: cover;
+	background-position: center;
+	}
+	
+	.pieza {
+		position: relative;
+		width: 40px;
+		float: left;
+		height: 219px;
+		box-sizing: border-box;
+		text-align: center;
+		cursor: pointer;
+	}
+		
+	.pieza-odontograma{
+	background-size: cover;
+	background-position: center;
+	height: 218px;
+	width: 100%;
+	margin-bottom: 9px;
+	margin-top: 5px;
+	
+	}
+	.pieza-odontograma:hover{
+	box-shadow: 0px 0px 9px rgb(32, 154, 201);
+	
+	}
+		
+		.bottom{ 
+		top: 246px !important;
+		}
+		
+		.invertida{
+		-webkit-transform: scaleX(-1);
+		}
+
+		.cuadrante {
+			width: 216%;
+			float: left;
+			margin-right: auto;
+			margin-left: auto;
+			height: auto;
+			margin-bottom: 32px;
+		}
+		
+	
+		.popover-header {
+		    padding:8px 14px;
+		    background-color:#f7f7f7;
+		    border-bottom:1px solid #ebebeb;
+		    -webkit-border-radius:5px 5px 0 0;
+		    -moz-border-radius:5px 5px 0 0;
+		    border-radius:5px 5px 0 0;
+		}
+		.popover-title {
+		    margin:0;
+		    padding:0;
+		    background-color:transparent;
+		    border:none;
+		}
+		.example-popovers {
+		    padding:30px 0;
+		}
+		.acenter {
+		    text-align:center;
+		    margin:30px 0;
+		}
+		
+		

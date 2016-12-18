@@ -1,0 +1,202 @@
+/*
+	Autor: Kevyn José Xavier Lux Almazán
+	kev.almazan@gmail.com
+	@kev_almazan
+*/
+
+.cuadro{
+    width: 40px;
+    height: 30px;
+    box-sizing:border-box;
+    border:1px #cccccc solid;
+    border-right:none;
+    border-top:none;
+    border-bottom:none;
+    float:left;
+    text-align: center;
+	padding-top: 6px;
+	overflow:hidden;
+}
+
+.cuadro-ultimo{
+    border-right: 1px #cccccc solid;
+}
+
+.fila-superior{
+    border-bottom: 1px #cccccc solid;
+}
+
+.fila-inferior{
+    border-top: 1px #cccccc solid;
+}
+
+.arcada{
+    overflow: hidden;
+}
+
+.fila{
+    overflow: hidden;
+}
+
+.odontograma-deciduo{
+    width:400px;
+    min-width:200px;
+    margin:auto;
+}
+.odontograma-adulto{
+    width:640px;
+    margin:auto;
+}
+
+.matriz-superior{
+    border-top:1px #cccccc solid;
+}
+.matriz-inferior{
+    border-bottom:1px #cccccc solid;
+}
+.pieza{
+    width: 40px;
+    height: 235px;
+    float:left; 
+}
+
+.etiqueta{
+    background-color: #2980b9;
+    text-align: center;
+    color: white;
+    font-family: monospace;
+    font-size: 9pt;
+    font-weight: bold;
+    border-radius: 2px;
+    height: 15px;
+    margin: auto;
+    width: 28px;
+}
+
+.etiqueta-inferior{
+    position: relative;
+    top: 220px;
+}
+
+.mediano{
+    transform: scale(0.92);
+    margin-right: -3%;
+}
+.anotacion{
+    height: 220px;
+	width: 40px;
+	background-size: cover;
+	background-position: center;
+	position:absolute;
+}
+
+.anotaciones{
+    height: 220px;
+	width: 40px;
+}
+.anotacion-superior{
+    margin-top:15px;
+}
+
+.titulo{
+    font-family: helvetica;
+    position: absolute;
+    color: white;
+    background: #2980b9;
+    left: inherit;
+    top: inherit;
+    text-align: center;
+    font-size: 8pt;
+    margin-top: 0px;
+    height: 32px;
+    border: 1px solid #00426d;
+}
+
+.titulo-lateral{ 
+    width:118px;
+    padding: 9px 0px 9px 0px;;
+    margin-left: -117px;
+    border-radius: 3px 0px 0px 3px;
+    border-collapse: collapse;
+    margin-top: -1px;  
+}
+
+.titulo-central{
+	width:100%;
+	position: inherit;
+	height: 16px;
+}
+
+
+/*
+Exclusivos para la edicion
+*/
+
+
+
+.boton-central{
+	margin-top: -12px;
+	margin-left: -19px;
+}
+.boton-lateral{
+	margin-top: 2px;
+	margin-left: -140px;
+}
+
+.pieza-palida{
+	opacity: 0.30;
+	-webkit-filter: blur(2px);
+}
+
+.pieza-normal{
+	opacity:1;
+}
+#pieza-clon{
+	overflow: hidden;
+	width: 40px;
+	margin: auto;
+	
+}
+
+.select-matriz{
+	width: 131px;
+	border-radius: 4px 4px 0px 0px;
+	border-bottom:none;
+}
+
+
+#marco{
+	position: fixed;
+	width: 50px;
+	height: 120px;
+	border-width: 4px;
+	border-style: solid;
+	border-color: red;
+	bottom: 0;
+	left: 0;
+	z-index: 10000;
+}
+
+#mapa{
+	width: 100;
+	height: 120;
+	left: 0;
+	position: fixed;
+	background-image: url('/clinicas-crm/img/mapa-deciduo.jpg');
+	bottom: 0;
+	z-index: 9999;
+	background-size: cover;
+}
+
+#barra-progreso{
+	width: 400px;
+	min-width:200px;
+	margin: auto;
+}
+
+select.multiselect,
+		select.multiselect + div.btn-group,
+		select.multiselect + div.btn-group button.multiselect,
+		select.multiselect + div.btn-group.open .multiselect-container{
+		    width:100% !important;
+		}

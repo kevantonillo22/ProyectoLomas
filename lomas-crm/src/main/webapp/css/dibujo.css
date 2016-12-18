@@ -1,0 +1,138 @@
+/*
+Ajustes y estilos del lienzo de dibujo
+*/
+
+
+
+.imagen-central {
+	
+}
+
+.imagen-izquierda{
+	width:82px;
+    height:900px;
+    float:left;
+    background-position: -250px;
+}
+
+.marco-izquierdo{
+	
+}
+
+.marco-derecho{
+	width:82px;
+    height:900px;
+    float:left;
+    background-position: 332px;
+}
+
+
+.imagen-derecha{
+	width:82px;
+    height:900px;
+    float:left;
+    background-position: 332px;
+}
+
+#site-body-content {
+	padding: 15px 15px 15px 15px;|
+}
+
+#site-bottom-bar {
+	left: 0px;
+	background-color: rgba(0, 0, 0, 0.75);
+	border-top: 1px solid #CCCCCC;
+	top: 0px;
+	font-family: verdana, arial;
+	font-size: 11px;
+	height: 47px;
+	position: fixed;
+	width: 100%;
+	z-index: 9999999;
+}
+
+#site-bottom-bar-frame {
+	height: 30px;
+	margin: 0px 10px 0px 10px;
+	position: relative;
+}
+
+#site-bottom-bar-content {
+	text-align: center;
+	padding: 3px 0px 0px 0px;
+}
+
+
+
+.cuerpo-select{
+    background-image: url('/clinicas-crm/img/cuadrito.png');
+	background-size: 15;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.marco-padre{
+    width:328px;
+    height:900px;
+    margin:0 auto;
+}
+.marco-izquierdo{
+    width:82px;
+    height:900px;
+    float:left;
+    background-position: -250px;
+}
+
+.marco-central{
+    width:164px;
+    height:900px;
+    float:left;
+    background-color: white;
+    overflow:hidden;
+    background-position:center;
+}
+.imagen-central{
+    
+    background-position:center;
+    width:inherit;
+    position:absolute;
+    height:inherit;
+    margin-top: -900;
+}
+
+#mascara{
+    cursor: crosshair;
+    position: relative;
+    width:500px;
+    height:900px;
+    left:-168px;
+    top:-900px;
+}
+
+.marco-derecho{
+    width:82px;
+    height:900px;
+    float:left;
+    background-position: 332px;
+}
+
+#sketchpad{
+    
+    left: -168;
+    position: relative;
+}
