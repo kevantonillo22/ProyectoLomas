@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import crm_BE.Resultado_BE;
+import crm_BE.garita.Direccion_BE;
 import crm_BE.garita.Ingreso_BE;
 
 public class Ingreso_DAL {
@@ -232,4 +233,94 @@ public class Ingreso_DAL {
 		return lista_resultado;
 	}
 
+	/*********************************************************************
+	 * @author Kevin Cardona
+	 * @since 22/01/2017
+	 * @param Ingreso_BE
+	 * @param Connection
+	 * @return List<Ingreso_BE>
+	 * @throws Exception
+	 * @Descripcion Lista los datos de ingreso en base a una fecha y/o direccion
+	 ********************************************************************/
+	public static List<Ingreso_BE> listarPorFechaDireccion(Ingreso_BE ingreso, Direccion_BE direccion, Connection conexion)
+			throws SQLException {
+		// Declaración de variables
+		List<Ingreso_BE> lista_resultado;
+		Ingreso_BE temp;
+		PreparedStatement pstmt;
+		ResultSet rs;
+
+		// Inicialización de variables
+		lista_resultado = new ArrayList<Ingreso_BE>();
+		pstmt = null;
+		rs = null;
+
+		try {
+			// Declaración de la función
+			pstmt = conexion.prepareStatement("select * from fn_ingreso_listarPorFechaDireccion(?,?,?,?)");
+
+			// Definición de los parámetros de la función
+			if (ingreso.in_fecha_entrada != null) {
+				pstmt.setTimestamp(1, ingreso.in_fecha_entrada);
+				System.out.println(ingreso.in_fecha_entrada.toString());
+		    } else {
+				pstmt.setNull(1, Types.NULL);
+				System.out.println("null 1");
+		    }
+			
+			if (direccion.di_numero_calle_av != null) {
+				pstmt.setString(2, direccion.di_numero_calle_av );
+		    } else {
+				pstmt.setNull(2, Types.NULL);
+				System.out.println("null 2");
+		    }
+			
+			if (direccion.di_calle_av != -9999) {
+				pstmt.setInt(3, direccion.di_calle_av);
+		    } else {
+				pstmt.setNull(3, Types.NULL);
+				System.out.println("null 3");
+		    }
+			
+			if (direccion.di_num_casa != null) {
+				pstmt.setString(4, direccion.di_num_casa);
+		    } else {
+				pstmt.setNull(4, Types.NULL);
+				System.out.println("null 4");
+		    }
+			// Ejecuta la función
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// Inicializar la entidad temporal
+				temp = new Ingreso_BE();
+
+				// Llenar entidad temporal con cada columna
+				temp.in_ingreso = rs.getInt("in_ingreso");
+				temp.in_placa = rs.getString("in_placa");
+				temp.in_texto_direccion = rs.getString("in_direccion");
+				temp.in_imagen_placa = rs.getString("in_imagen_placa");
+				temp.in_imagen_rostro = rs.getString("in_imagen_rostro");
+				temp.in_imagen_dpi = rs.getString("in_imagen_dpi");
+				temp.in_fecha_entrada = rs.getTimestamp("in_fecha_entrada");
+				temp.in_usuario = rs.getInt("in_usuario");
+				temp.in_estado = rs.getInt("in_estado");
+				// Agregar a la lista
+				lista_resultado.add(temp);
+			}
+		} catch (Exception e) {
+			// Error no manejado
+			e.printStackTrace();
+			lista_resultado = null;
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			if (rs != null) {
+				rs.close();
+			}
+		}
+
+		return lista_resultado;
+	}
 }

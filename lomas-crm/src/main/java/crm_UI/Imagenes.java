@@ -56,7 +56,10 @@ public class Imagenes extends HttpServlet {
 				  //Imágenes de perfil
 				  filename = General_BE.CHEQUE_IMAGENES+"/"+archivo;
 				  break;
-				  
+			  case 3:
+				  //Imágenes de perfil
+				  filename = General_BE.INGRESO_IMAGENES+"/"+archivo;
+				  break;  
 			  }
 		  }catch(Exception e){
 			  

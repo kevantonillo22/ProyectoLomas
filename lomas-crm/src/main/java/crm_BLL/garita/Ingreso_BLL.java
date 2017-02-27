@@ -9,6 +9,7 @@ import crm_BE.Bitacora_BE;
 import crm_BE.Funciones;
 import crm_BE.Resultado_BE;
 import crm_BE.Sesion_BE;
+import crm_BE.garita.Direccion_BE;
 import crm_BE.garita.Ingreso_BE;
 import crm_BLL.General_BLL;
 import crm_DAL.Bitacora_DAL;
@@ -158,4 +159,53 @@ public class Ingreso_BLL {
 		return lista_resultado;
 	}
 
+	/*********************************************************************
+	 * @author Kevin Cardona
+	 * @since 22/01/2017
+	 * @param Ingreso_BE
+	 * @return List<Ingreso_BE>
+	 * @throws Exception
+	 * @Descripcion Lista los datos de ingreso en base a una fecha y/o direccion
+	 ********************************************************************/
+	public static List<Ingreso_BE> listarPorFechaDireccion(Ingreso_BE ingreso, Direccion_BE direccion) {
+		// Declaración de variables
+		Connection conexion;
+		List<Ingreso_BE> lista_resultado;
+
+		// Inicialización de variables
+		conexion = General_BLL.obtenerConexion();
+		lista_resultado = new ArrayList<Ingreso_BE>();
+
+		// Verifica que la conexión no sea nula
+		if (conexion != null) {
+			try {
+				// Lógica de negocio
+
+				// Aquí se validan los parámetros y se realiza la llamada a DAL
+				lista_resultado = Ingreso_DAL.listarPorFechaDireccion(ingreso, direccion, conexion);
+				conexion.commit();
+
+			} catch (Exception e) {
+				// Error no manejado
+				lista_resultado = null;
+				try {
+					conexion.rollback();
+				} catch (SQLException e1) {
+					//Error no manejado en la conexión
+				}
+			} finally {
+				if (conexion != null) {
+					try {
+						conexion.close();
+					} catch (SQLException e) {
+						//Error no manejado en la conexión
+					}
+				}
+			}
+		} else {
+			// Error de conexión
+			lista_resultado = null;
+		}
+		return lista_resultado;
+	}
 }

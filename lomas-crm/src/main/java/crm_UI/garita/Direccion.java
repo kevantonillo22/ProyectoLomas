@@ -141,6 +141,17 @@ public class Direccion extends HttpServlet {
 					listarIngreso(ingreso, respuesta_json, request, js);
 				}
 				break;
+			case 6:
+				// Listar ingreso
+				if (!General_BLL.tienePermiso(sesion, Funciones.LISTAR_INGRESO)) {
+					respuesta_json.put("resultado", -101);
+					respuesta_json.put("descripcion", "Acceso denegado");
+				} else {
+					// Listar parametros del sistema
+					listarIngresoReporte(ingreso, direccion, respuesta_json, request, js);
+				}
+				break;	
+				
 			}
 		}
 
@@ -175,6 +186,8 @@ public class Direccion extends HttpServlet {
 		
 		
 		if(!str_numero_calle_av.equalsIgnoreCase("null") && !str_numero_calle_av.equalsIgnoreCase("")){
+			//Se le concatena un cero a la cadena
+			str_numero_calle_av = str_numero_calle_av.length() == 1 ? "0" + str_numero_calle_av : str_numero_calle_av;
 			direccion.di_numero_calle_av = (str_numero_calle_av);
 			busqueda.di_numero_calle_av = (str_numero_calle_av);
 		}
@@ -243,6 +256,7 @@ public class Direccion extends HttpServlet {
 		String str_id_direccion		= String.valueOf(js.get("id_direccion")).trim();
 		
 		if(!str_numero_calle_av.equalsIgnoreCase("null") && !str_numero_calle_av.equalsIgnoreCase("")){
+			str_numero_calle_av = str_numero_calle_av.length() == 1 ? "0" + str_numero_calle_av : str_numero_calle_av;
 			busqueda.di_numero_calle_av = (str_numero_calle_av);
 		}
 		if(!str_calle_av.equalsIgnoreCase("null") && !str_calle_av.equalsIgnoreCase("")){
@@ -501,6 +515,66 @@ public class Direccion extends HttpServlet {
 		
 		resultados = Ingreso_BLL.listar(ingreso);
 
+		for (Ingreso_BE ing : resultados) {
+			JSONObject tupla = new JSONObject();
+			
+			tupla.put("in_ingreso", String.valueOf(ing.in_ingreso));
+			tupla.put("in_placa", String.valueOf(ing.in_placa));
+			tupla.put("in_direccion", String.valueOf(ing.in_texto_direccion));
+			tupla.put("in_imagen_placa", String.valueOf(ing.in_imagen_placa));
+			tupla.put("in_imagen_rostro", String.valueOf(ing.in_imagen_rostro));
+			tupla.put("in_imagen_dpi", String.valueOf(ing.in_imagen_dpi));
+			tupla.put("in_fecha_entrada", String.valueOf(General_BLL.formatearFechaConHora(ing.in_fecha_entrada)));
+			tupla.put("in_usuario", String.valueOf(ing.in_usuario));
+			tupla.put("in_ingreso", String.valueOf(ing.in_estado));
+			
+			tuplas.add(tupla);
+		}
+
+		respuesta.put("resultado", 1);
+		respuesta.put("data", tuplas);
+		respuesta.put("descripcion", "Se obtuvieron los datos correctamente");
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void listarIngresoReporte(Ingreso_BE ingreso, Direccion_BE direccion,JSONObject respuesta,HttpServletRequest request, JSONObject requestAngular) {
+		List<Ingreso_BE> resultados;
+		
+		JSONArray tuplas = new JSONArray();
+		JSONObject js = requestAngular;
+		
+		String in_fecha_entrada	= String.valueOf(js.get("fecha")).trim();
+		String str_numero_calle_av = String.valueOf(js.get("numeroFiltro")).trim();
+		String str_calle_av 	= String.valueOf(js.get("avenidaCalleFiltro")).trim();
+		String str_num_casa		= String.valueOf(js.get("numeroCasaFiltro")).trim();
+		
+		
+		if(!in_fecha_entrada.equalsIgnoreCase("null") && !in_fecha_entrada.equalsIgnoreCase("")){
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		    Date parsedDate;
+			try {
+				parsedDate = dateFormat.parse(in_fecha_entrada + " 00:00:00");
+				Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+				ingreso.in_fecha_entrada = timestamp;
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(!str_numero_calle_av.equalsIgnoreCase("null") && !str_numero_calle_av.equalsIgnoreCase("")){
+			direccion.di_numero_calle_av = (str_numero_calle_av);
+		}
+		if(!str_calle_av.equalsIgnoreCase("null") && !str_calle_av.equalsIgnoreCase("") && direccion.di_numero_calle_av != null){
+			direccion.di_calle_av = Integer.parseInt(str_calle_av);
+		}
+		if(!str_num_casa.equalsIgnoreCase("null") && !str_num_casa.equalsIgnoreCase("")){
+			direccion.di_num_casa = (str_num_casa);
+		}
+		
+		resultados= Ingreso_BLL.listarPorFechaDireccion(ingreso, direccion);
+		
+		
 		for (Ingreso_BE ing : resultados) {
 			JSONObject tupla = new JSONObject();
 			

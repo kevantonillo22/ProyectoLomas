@@ -41,6 +41,7 @@ public class Funciones {
 	public static final int INGRESO_EGRESO		 						= 801;
 	public static final int CREAR_DIRECCION		 						= 802;
 	public static final int LISTAR_DIRECCION		 					= 803;
+	public static final int LISTAR_INGRESO			 					= 804;
 	
 	
 	
