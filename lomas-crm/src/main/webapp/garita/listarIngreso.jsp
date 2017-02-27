@@ -13,7 +13,7 @@
 	else
 	{
 		sesion = (Sesion_BE) session.getAttribute("sesion");
-		if(!General_BLL.tienePermiso(sesion,Funciones.LISTAR_INGRESO)){
+		if(!General_BLL.tienePermiso(sesion,Funciones.LISTAR_DIRECCION)){
 			response.sendRedirect("/lomas-crm/errorpermisos.jsp");
 		}
 		id = String.valueOf(sesion.se_usuario);
@@ -39,7 +39,7 @@
 			.clasetest{width: 54px; }
 		</style>
 	</head>
-	<body data-ng-app="listarDireccion">
+	<body data-ng-app="listarIngreso">
 		<div id="wrapper">
 			<nav class="navbar-top" role="navigation">
 				<div class="navbar-header">
@@ -108,12 +108,12 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="page-title">
-								<h1>Dirección de vecinos<small></small>
+								<h1>Ingresos a garita<small></small>
 								</h1>
 								<ol class="breadcrumb">
 									<li><i class="fa fa-dashboard"></i>  <a href="/lomas-crm/index.jsp">Inicio</a>
 									</li>
-									<li class="active">Listar Dirección</li>
+									<li class="active">Listar Ingresos</li>
 								</ol>
 							</div>
 						</div>
@@ -158,6 +158,26 @@
 												<div class="input-group">
 													<form name="formulario" data-ng-submit="formulario.$valid && buscar()">
 							               				<div class="row">
+							               					<div class="form-group col-sm-3" data-ng-class="{ 'has-error' : formulario.fecha.$invalid && !formulario.fecha.$pristine }">
+					                                    		<label for="txtDescripcion">Fecha:</label>
+					                                    		<div style="width:100%;" class="input-group date" id="datepicker1">
+							                                    	<span class="con-cursor input-group-addon">
+												                        <span class=""><i class="fa fa-calendar"></i></span>
+												                    </span>
+							                                    	<input 
+							                                    		onkeypress="return permite(event, 'solo_num')" 
+							                                    		style="cursor:pointer;text-align:center;" 
+							                                    		data-ng-model="fecha" 
+							                                    		name="fecha" 
+							                                    		type="text" 
+							                                    		class="form-control" 
+							                                    		style="text-align:center;" 
+							                                    		id="txtFecha1" 
+							                                    		placeholder="Inicio" 
+							                                    		maxlength="10"
+							                                    		data-ng-required = "numeroFiltro.length == 0 && numeroCasaFiltro.length == 0">
+							                                    </div>
+						                                	</div>
 															<div class="form-group col-xs-3" data-ng-class="{ 'has-error' : formulario.numeroFiltro.$invalid && !formulario.numeroFiltro.$pristine }" >
 																<label for="txtNombre">Número *</label>
 																	<input 
@@ -183,7 +203,7 @@
 																	</select>
 																</div>
 																
-																<div class="form-group col-xs-6" data-ng-class="{'has-error': formulario.numeroCasaFiltro.$invalid && !formulario.numeroCasaFiltro.$pristine}" >
+																<div class="form-group col-xs-3" data-ng-class="{'has-error': formulario.numeroCasaFiltro.$invalid && !formulario.numeroCasaFiltro.$pristine}" >
 																	<label for="txtDescripcion" >Numero casa *</label>
 								                                   	<input name="numeroCasaFiltro" 
 								                                   	type="text" 
@@ -198,7 +218,11 @@
 															</div>
 															<button type="submit" class="btn btn-default" style="margin-bottom:10px;" id="btn-buscar"
 															data-ng-bind-html="textoBotonBuscar"
-															data-ng-disabled="disableBuscar"></button>
+															data-ng-disabled="formulario.$invalid || disableBuscar"></button>
+															
+															<button type="button" class="btn btn-default" style="margin-bottom:10px;" id="btn-limpiar"
+															data-ng-click="limpiar()"
+															data-ng-disabled="disableBuscar" title="Limpiar"><i class="fa fa-refresh"></i></button>
 													</form>
 				                                	
 				                                </div>
@@ -212,11 +236,8 @@
 													
 													<th style="width: 54px;"></th>
 													<th style="text-align:center;" >Dirección</th>
-													<th style="text-align:center;" >Nombre titular</th>
-													<th style="text-align:center;" >Teléfono</th>
-													<th style="text-align:center;" >Email</th>
-													<th style="text-align:center;" >Estado pago</th>
-													<th style="text-align:center;" >Estado domicilio</th>
+													<th style="text-align:center;" >Placa</th>
+													<th style="text-align:center;" >Fecha entrada</th>
 												</tr>
 											</thead>
 										</table>
@@ -405,11 +426,27 @@
 		<script src="/lomas-crm/js/plugins/messenger/messenger.min.js"></script>
 		<script src="/lomas-crm/js/plugins/messenger/messenger-theme-future.js"></script>
 		<script src="/lomas-crm/js/generales.js"></script>
-		<script src="/lomas-crm/js/garita/listarDireccion.js"></script>
+		<script src="/lomas-crm/js/garita/listarIngreso.js"></script>
 		<!-- DECLARACIÃN DE FUNCIONES JAVASCRIPT -->
 		
 		<script type="text/javascript">
 			var id =<%out.print(id);%>;
+			
+			$('#txtFecha1').datepicker({
+				format: "dd/mm/yyyy",
+			    language: "es",
+			    todayBtn: "linked",
+			    todayHighlight: true,
+			    autoclose:true
+		    });
+			$('#txtFecha2').datepicker({
+				format: "dd/mm/yyyy",
+			    language: "es",
+			    todayBtn: "linked",
+			    todayHighlight: true,
+			    autoclose:true
+		    });
+			
 			/*$("#numero").mask("99");
 			$("#numeroCasa").mask("99-99");
 			$('#telefono').mask("9999-9999");

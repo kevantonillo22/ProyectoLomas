@@ -1,4 +1,4 @@
-var app = angular.module('listarDireccion', ['ngSanitize','ngMask']);
+var app = angular.module('listarIngreso', ['ngSanitize','ngMask']);
 
 app.directive( 'compileData', function ( $compile ) {
   return {
@@ -26,9 +26,9 @@ app.controller('listar', function($scope,$http, $compile) {
         {id: '1', name: 'Av.'},
         {id: '2', name: 'Calle'}
     ];
-	$scope.numero ='';
-	$scope.numeroCasa ='';
-	$scope.avenidaCalle = $scope.values[0];
+	$scope.numeroFiltro ='';
+	$scope.numeroCasaFiltro ='';
+	$scope.avenidaCalleFiltro = $scope.values[0];
 	
     $scope.textoBotonBuscar = '<i class="fa fa-search"></i> Buscar';
     $scope.disableBuscar = false;
@@ -52,17 +52,25 @@ app.controller('listar', function($scope,$http, $compile) {
      
      $scope.claseBotonEditar = 'fa fa-check';
      $scope.disabledBotonEditar = false;
-    
+     
+     $scope.limpiar = function(){
+		$scope.numeroFiltro ='';	
+		$scope.numeroCasaFiltro ='';
+		$scope.avenidaCalleFiltro = $scope.values[0];
+		$scope.fecha = '';
+     }
+     
     $scope.buscar = function (){
     	var texto = $scope.textoBotonBuscar;
     	$scope.textoBotonBuscar = '<i class="fa fa-spin fa-spinner"></i> Espere';
         $scope.disableBuscar = true;
         
         var parametros = {};
-		parametros.operacion = 2;
-		parametros.numero = $scope.numeroFiltro;
-		parametros.avenidaCalle = $scope.avenidaCalleFiltro !== undefined ? $scope.avenidaCalleFiltro.id : "";
-		parametros.numeroCasa = $scope.numeroCasaFiltro;
+		parametros.operacion = 6;
+		parametros.fecha = $scope.fecha;
+		parametros.numeroFiltro = $scope.numeroFiltro;
+		parametros.avenidaCalleFiltro = $scope.avenidaCalleFiltro !== undefined ? $scope.avenidaCalleFiltro.id : "";
+		parametros.numeroCasaFiltro = $scope.numeroCasaFiltro;
 		
     	$http({
             method: "POST",
@@ -159,17 +167,11 @@ app.controller('listar', function($scope,$http, $compile) {
 	   					"defaultContent": '<button title="Opciones" style="border-radius:50%;" class="btn btn-white"><b>+</b></button>',
 	   					"visible": true
 	   				}, {
-	   					"data": "direccion"
+	   					"data": "in_direccion"
 	   				}, {
-	   					"data": "nombre_titular"
+	   					"data": "in_placa"
 	   				}, {
-	   					"data": "telefono"
-	   				}, {
-	   					"data": "email"
-	   				}, {
-	   					"data": "label_pago"
-	   				}, {
-	   					"data": "label_domicilio"
+	   					"data": "in_fecha_entrada"
 	   				}
 	   			],
 	   			"initComplete": function (settings, json) {
@@ -231,28 +233,24 @@ app.controller('listar', function($scope,$http, $compile) {
     
     $scope.format = function (d) {
     	$scope.id = d.id_direccion;
-    	var ver_datos 	= '<td><button data-ng-disabled="disableVerDatos" data-ng-click="editar(' + d.id_direccion + ')" id="btn-ver" class="btn btn-green" ><i data-ng-class="claseVerDatos"></i> Ver datos </button></td>';
-    	var eliminar 	= '<td><button data-ng-disabled="disableEliminar" data-ng-click="eliminar(' + d.id_direccion + ')" id="btn-eliminar" class="btn btn-red" ><i data-ng-class="claseEliminar"></i> Eliminar </button></td>';
+    	var placa 	= '<td><img src="/lomas-crm/imagenes?t=3&f=' + d.in_imagen_placa + '" style="width:100%"></td>';
+    	var rostro 	= '<td><img src="/lomas-crm/imagenes?t=3&f=' + d.in_imagen_rostro + '" style="width:100%"></td>';
+    	var dpi 	= '<td><img src="/lomas-crm/imagenes?t=3&f=' + d.in_imagen_dpi + '" style="width:100%"></td>';
+    	
     	
     	var descartar = '';
     	
-    	var spin 		= '<td><div id="changeSpin"></div></td>';
-    	var titulo 		= 'Opciones';
+    	var titulo 		= 'Fotografias';
     	
-    	return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' + 
+    	return '<table cellpadding="5" cellspacing="0" border="0" style="width:100%">' + 
     	'<tr>' + 
     	'<td>' + titulo + '</td>' + 
     	'</tr>' + 
     	'<tr>' + 
-    	ver_datos +
-    	eliminar +
+    	placa +
+    	rostro +
+    	dpi +
     	descartar +
-    	//rechazar +
-    	spin + 
-    	//'<td><div class="form-group" id="wrapCasoOP" style="margin-bottom:0px;"><select placeholder="holis" class="form-control" id="casoOP"><option value="" disabled selected>Asignado a O.P. de</option><option value="1">4º año </option><option value="2">5º año </option><option value="3">PRC </option><option value="4">Postgrado </option></select></div></td><td><div id="changeSpin"></div></td>' +
-    	//'<td><label class="checkbox-inline"><input id="chkCaso" type="checkbox"> Caso Docente</label></td><td><div id="changeSpin2"></div></td>' + 
-    	
-    	
     	
     	'</tr>' + 
     	'</table>';
@@ -357,7 +355,6 @@ app.controller('listar', function($scope,$http, $compile) {
 		parametros.estado_pago = $scope.estadoPago.id;
 		parametros.estado_domicilio = $scope.estadoDomicilio.id;
 		parametros.email = $scope.email;
-		console.log(parametros);
     	$http({
             method: "POST",
             url: "/lomas-crm/direccion",

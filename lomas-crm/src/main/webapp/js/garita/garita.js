@@ -160,6 +160,7 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
 	    }, function() {
 	    	$scope.classBtnDoc = clase;
 			$scope.isDisabledBtnDoc = false;
+			$scope.$apply() ;
 	        alert('No fue posible obtener acceso a la cámara.');
 	    });
 	}
@@ -185,6 +186,7 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
 	    }, function() {
 	    	$scope.classBtnRostro = clase;
 			$scope.isDisabledBtnRostro = false;
+			$scope.$apply();
 	        alert('No fue posible obtener acceso a la cámara.');
 	    });
 	}
@@ -210,6 +212,7 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
 	    }, function() {
 	    	$scope.classBtnPlaca = clase;
 			$scope.isDisabledBtnPlaca = false;
+			$scope.$apply();
 	        alert('No fue posible obtener acceso a la cámara.');
 	    });
 	}

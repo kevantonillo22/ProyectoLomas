@@ -41,66 +41,8 @@
 	</head>
 	<body ng-app="crearDireccion">
 		<div id="wrapper">
-			<nav class="navbar-top" role="navigation">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target=".sidebar-collapse">
-					<i class="fa fa-bars"></i> Menú
-					</button>
-					<div class="navbar-brand">
-						<a href="/lomas-crm/index.jsp">
-						<img src="/lomas-crm/img/logo_home.png" class="img-responsive" alt="">
-						</a>
-					</div>
-				</div>
-				<div class="nav-top">
-					<!-- BARRA LATERAL -->
-					<ul class="nav navbar-left">
-						<li class="tooltip-sidebar-toggle">
-							<a href="#" id="sidebar-toggle" data-toggle="tooltip" data-placement="right" title="" data-original-title="Barra lateral">
-							<i class="fa fa-bars"></i>
-							</a>
-						</li>
-					</ul>
-					<ul class="nav navbar-right">
-						<!-- MENÃ DESPLEGABLE DERECHO -->
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle"
-								data-toggle="dropdown"> <i class="fa fa-user"></i> <i
-								class="fa fa-caret-down"></i>
-							</a>
-							<ul class="dropdown-menu dropdown-user">
-								<li>
-									<a class="logout_open" href="#logout" data-popup-ordinal="0" id="open_22839500">
-									<i class="fa fa-sign-out"></i> Cerrar sesión
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</nav>
-			<!-- MENÃ IZQUIERDO PRINCIPAL -->
-			<nav class="navbar-side" role="navigation">
-				<div class="navbar-collapse sidebar-collapse collapse">
-					<ul id="side" class="nav navbar-nav side-nav">
-						<li class="side-user hidden-xs">
-							<img class="img-circle" alt="" style="background: whitesmoke; background-image: url('<%=sesion.se_ruta_foto%>'); width: 150px; height: 150px; background-size: cover; background-repeat: no-repeat; background-position: center center;">
-							<p class="welcome">
-								<i class="fa fa-key"></i> Inició sesión como
-							</p>
-							<p class="name tooltip-sidebar-logout"><%=sesion.se_nombres%>
-							<span class="last-name"><%=sesion.se_apellidos%></span> <a
-									style="color: inherit" class="logout_open" href="#logout"
-									data-toggle="tooltip" data-placement="top" title=""
-									data-popup-ordinal="1" id="open_61613468"
-									data-original-title="Salir"><i class="fa fa-sign-out"></i></a>
-							</p>
-							<div class="clearfix"></div>
-						</li>
-						<%= sesion.se_menu %>
-					</ul>
-				</div>
-			</nav>
+			<%@include file="/masterPages/MasterMenus.jsp"%>
+			
 			<!-- CONTENIDO DE LA PÃGINA -->
 			<div id="page-wrapper" class="" ng-controller="crear">
 				<div class="page-content page-content-ease-in">
@@ -161,17 +103,21 @@
 														placeholder="No." 
 														maxlength="10" 
 														name="numero"
+														mask='99?'
+														Restrict="reject"
 														data-ng-model="numero" 
+														data-ng-blur="addZero()"
 														data-ng-pattern="/[0-9]+/"
 														data-ng-required="true">
 												</div>
 												<div class="form-group col-xs-3">
 													<label for="txtDescripcion">Calle o Avenida *</label>
 													<select class="form-control" 
+													name="avenidaCalle"
 													data-ng-options="option.name for option in values track by option.id"
 													data-ng-model="avenidaCalle" 
-													data-nq-required="true">
-														<option value="" selected disabled>::Seleccione::</option>
+													required>
+														<option value="" disabled>::Seleccione::</option>
 													</select>
 												</div>
 												
@@ -183,6 +129,9 @@
 				                                   	id="numeroCasa" 
 				                                   	placeholder="Número casa" 
 				                                   	maxlength="10" 
+				                                   	placeholder="99-99"
+				                                   	mask='99-99'
+													Restrict = "reject"
 				                                   	data-ng-model="numeroCasa" 
 				                                   	data-ng-required="true">
 					                            </div>
@@ -208,7 +157,10 @@
 														<input 
 															class="form-control" 
 															id="telefono"
-															name="telefono" 
+															name="telefono"
+															placeholder="9999-9999" 
+															mask='9999-9999'
+															Restrict = "reject"
 															data-ng-model="telefono"
 															data-ng-disabled="isAbandonada">
 													</div>
@@ -243,22 +195,24 @@
 												
 												<div class="form-group col-md-6 col-lg-6 col-xs-6" >
 													<label for="txtDescripcion">Estado de pago *</label>
-													<select class="form-control" 
+													<select class="form-control"
+													name="estadoPago" 
 													data-ng-options="option.name for option in estadosPago track by option.id"
 													data-ng-model="estadoPago" 
-													data-nq-required="true">
-														<option value="" selected disabled>::Seleccione::</option>
+													required>
+														<option value="" disabled>::Seleccione::</option>
 													</select>
 												</div>
 												
 												<div class="form-group col-md-6 col-lg-6 col-xs-6" >
 													<label for="txtDescripcion">Estado de domicilio *</label>
 													<select class="form-control" 
+													name="estadoDomicilio"
 													data-ng-options="option.name for option in estadosDomicilio track by option.id"
 													data-ng-model="estadoDomicilio" 
 													data-ng-change ="cambio()"
-													data-nq-required="true">
-														<option value="" selected disabled>::Seleccione::</option>
+													required>
+														<option value="" disabled>::Seleccione::</option>
 													</select>
 												</div>
 											</div>
@@ -303,6 +257,7 @@
 		<script src="/lomas-crm/js/jquery-1.11.0.min.js"></script>
 		<script src="/lomas-crm/js/angular/angular.min.js"></script>
 		<script src="/lomas-crm/js/angular/Modules/angular-sanitize.js"></script>
+		<script src="/lomas-crm/js/angular/Modules/ngMask.js"></script>
 		<script src="/lomas-crm/js/plugins/bootstrap/bootstrap.min.js"></script>
 		<script src="/lomas-crm/js/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 		<script src="/lomas-crm/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -321,9 +276,9 @@
 		
 		<script type="text/javascript">
 			var id =<%out.print(id);%>;
-			$("#numero").mask("99");
+			/*$("#numero").mask("99");
 			$("#numeroCasa").mask("99-99");
-			$('#telefono').mask("9999-9999");
+			$('#telefono').mask("9999-9999");*/
 		</script>
 		
 		

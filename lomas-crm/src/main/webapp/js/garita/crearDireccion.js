@@ -1,4 +1,4 @@
-var app = angular.module('crearDireccion', ['ngSanitize']);
+var app = angular.module('crearDireccion', ['ngSanitize','ngMask']);
 
 app.controller('crear', function($scope,$http) {
 	$scope.values = [
@@ -17,6 +17,7 @@ app.controller('crear', function($scope,$http) {
     $scope.textoGuardar = '<i class="fa fa-check"></i> Guardar';
     $scope.disableGuardar = false;
     $scope.isAbandonada = false;
+    
     
     $scope.guardar = function(){
     	var texto = $scope.textoGuardar;
@@ -94,14 +95,14 @@ app.controller('crear', function($scope,$http) {
     
     $scope.cambio = function(){
     	if($scope.estadoDomicilio.id == 3){
-	    	$scope.isAbandonada = true;
+	    	/*$scope.isAbandonada = true;
 	    	$scope.familia = '';
 	    	$scope.telefono = '';
 	    	$scope.titular = '';
 	    	$scope.email = '';
-	    	$scope.estadoPago = $scope.estadosPago[1];
+	    	$scope.estadoPago = $scope.estadosPago[1];*/
     	}else{
-    		$scope.isAbandonada = false;
+    		//$scope.isAbandonada = false;
     	}
     }
 });
