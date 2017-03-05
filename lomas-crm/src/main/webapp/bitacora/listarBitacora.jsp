@@ -7,13 +7,13 @@
 	Sesion_BE sesion = new Sesion_BE();
 	if(session.getAttribute("sesion") == null){
 		session.invalidate();
-		response.sendRedirect("/lomas-crm/sesionExpirada.jsp");
+		response.sendRedirect("../sesionExpirada.jsp");
 	}
 	else
 	{
 		sesion = (Sesion_BE) session.getAttribute("sesion");
 		if(!General_BLL.tienePermiso(sesion, Funciones.LISTAR_EVENTOS_DE_BITACORA)){
-			response.sendRedirect("/lomas-crm/errorpermisos.jsp");
+			response.sendRedirect("../errorpermisos.jsp");
 		}
 	}
 	
@@ -25,11 +25,11 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<title>Sistema de Gestión- CUB</title>
-		<link href="/lomas-crm/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/lomas-crm/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins/bootstrap-datepicker/datepicker3.css" rel="stylesheet">
-		<link href="/lomas-crm/css/style.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins.css" rel="stylesheet">
+		<link href="../css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/plugins/bootstrap-datepicker/datepicker3.css" rel="stylesheet">
+		<link href="../css/style.css" rel="stylesheet">
+		<link href="../css/plugins.css" rel="stylesheet">
 		<!-- ESTILOS PERSONALIZADOS-->
 		<style type="text/css">
 			.clasetest{width: 54px; }
@@ -43,8 +43,8 @@
 					<i class="fa fa-bars"></i> Menú
 					</button>
 					<div class="navbar-brand">
-						<a href="/lomas-crm/index.jsp">
-						<img src="/lomas-crm/img/logo_home.png" class="img-responsive" alt="">
+						<a href="../index.jsp">
+						<img src="../img/logo_home.png" class="img-responsive" alt="">
 						</a>
 					</div>
 				</div>
@@ -107,7 +107,7 @@
 								<h1>Bitácora<small></small>
 								</h1>
 								<ol class="breadcrumb">
-									<li><i class="fa fa-dashboard"></i>  <a href="/lomas-crm/index.jsp">Inicio</a>
+									<li><i class="fa fa-dashboard"></i>  <a href="../index.jsp">Inicio</a>
 									</li>
 									<li class="active">Listar Bitácora</li>
 								</ol>
@@ -178,7 +178,7 @@
 	            <p>De click en "Salir" para cerrar sesión.</p>
 	            <ul class="list-inline">
 	                <li>
-	                    <a href="/lomas-crm/salir"  class="btn btn-green">
+	                    <a href="../salir"  class="btn btn-green">
 	                        <strong>Salir</strong>
 	                    </a>
 	                </li>
@@ -189,16 +189,16 @@
 	        </div>
 	    </div>
 		<!-- SCRIPTS GLOBALES -->
-		<script src="/lomas-crm/js/jquery-1.11.0.min.js"></script>
-		<script src="/lomas-crm/js/plugins/bootstrap/bootstrap.min.js"></script>
-		<script src="/lomas-crm/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/defaults.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/logout.js"></script>
-		<script src="/lomas-crm/js/plugins/datatables/jquery.dataTables.js"></script>
-		<script src="/lomas-crm/js/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
-		<script src="/lomas-crm/js/estiloTabla.js"></script>
-		<script src="/lomas-crm/js/flex.js"></script>
+		<script src="../js/jquery-1.11.0.min.js"></script>
+		<script src="../js/plugins/bootstrap/bootstrap.min.js"></script>
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
+		<script src="../js/plugins/popupoverlay/defaults.js"></script>
+		<script src="../js/plugins/popupoverlay/logout.js"></script>
+		<script src="../js/plugins/datatables/jquery.dataTables.js"></script>
+		<script src="../js/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+		<script src="../js/estiloTabla.js"></script>
+		<script src="../js/flex.js"></script>
 		<!-- Declaración de las funciones de JavaScript-->
 		<script type="text/javascript">
 			//Inicializar la fecha
@@ -211,7 +211,7 @@
 			function cargarTabla(){
 				table = $('#example').DataTable({
 					"bDestroy": true,
-					"ajax": {	"url": "/lomas-crm/bitacora",
+					"ajax": {	"url": "../bitacora",
 				            	"data": function ( d ) {
 			                	d.filtro = $('#txtFiltro').val();
 			                	d.inicio=$('#fechaInicio').val();
@@ -367,7 +367,7 @@
 						</div>
 						<div class="modal-body">La sesión ha expirado. Debe iniciar sesión de nuevo para continuar trabajando</div>
 						<div class="modal-footer">
-							<a href="/lomas-crm/ingreso.jsp">
+							<a href="../ingreso.jsp">
 								<button type="button" class="btn btn-primary">Iniciar sesión</button>
 							</a>
 						</div>

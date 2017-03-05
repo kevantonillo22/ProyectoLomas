@@ -385,7 +385,7 @@ function listarCajas(){
 		table = $('#example').DataTable({
 		 "ajax": 
 		 {	
-			 "url": "/lomas-crm/caja",
+			 "url": "..//caja",
 			 "data": 
 				 function ( d ) {
 				 	d.operacion = 3;
@@ -598,7 +598,7 @@ function validarFormModificarCaja(){
 	}else{
 		lblAdvertencia.html('');
 		confirmacionModificar(parametros);
-		//$.post('/lomas-crm/caja', parametros, callbackGuardarCaja, 'json');
+		//$.post('../caja', parametros, callbackGuardarCaja, 'json');
 	}
 }
 
@@ -621,7 +621,7 @@ function confirmacionModificar(parametros){
 		   		txt_btn_guardar_caja = modal_modificar.boton.html();
 				modal_modificar.boton.html(' Espere <i class="fa fa-spinner fa-spin"></i>');
 				modal_modificar.boton.prop('disabled', true);
-		   		$.post('/lomas-crm/caja', parametros, callbackValidarFormModificarCaja, 'json');
+		   		$.post('../caja', parametros, callbackValidarFormModificarCaja, 'json');
 		   		mensajito.hide();
 		      }
 		    },
@@ -687,7 +687,7 @@ function cargarModificarCaja(data){
 	var parametros = {};
 	parametros.operacion = 4;
 	parametros.id = data.identificador;
-	$.post('/lomas-crm/caja',parametros,callbackCargarModificarCaja,'json');
+	$.post('../caja',parametros,callbackCargarModificarCaja,'json');
 }
 
 
@@ -793,7 +793,7 @@ function mostrarVistaDatos(data){
 	txt_btn_datos = $("#btn-ver").html();
 	$("#btn-ver").html('<b> Espere <i class="fa fa-spinner fa-spin"></i></b>');
 	$("#btn-ver").prop("disabled", true);
-	$.post('/lomas-crm/caja',parametros,callbackMostrarVistaDatos,'json');
+	$.post('../caja',parametros,callbackMostrarVistaDatos,'json');
 	
 }
 

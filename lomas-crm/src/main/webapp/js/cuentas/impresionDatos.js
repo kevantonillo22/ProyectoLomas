@@ -46,7 +46,7 @@ function cargarVistaImpresion2(data_general){
 		
 		
 		$('#frame-impresion-datos').hide();
-		$('#frame-impresion-datos').attr('src', '/lomas-crm/cuentas/impresionDatosCheque.jsp?' + parametros_general);
+		$('#frame-impresion-datos').attr('src', '../cuentas/impresionDatosCheque.jsp?' + parametros_general);
 		//impresionCargada=true;
 	}
 	

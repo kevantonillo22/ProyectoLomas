@@ -6,7 +6,7 @@
 	Sesion_BE sesion = new Sesion_BE();
 	if(session.getAttribute("sesion") == null){
 		session.invalidate();
-		response.sendRedirect("/lomas-crm/sesionExpirada.jsp");
+		response.sendRedirect("sesionExpirada.jsp");
 	}
 	else
 	{
@@ -20,10 +20,10 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<title>Sistema de Gestión- CUB</title>
-		<link href="/lomas-crm/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/lomas-crm/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-		<link href="/lomas-crm/css/style.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins.css" rel="stylesheet">
+		<link href="css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/plugins.css" rel="stylesheet">
 		<!-- ESTILOS PERSONALIZADOS-->
 		<style type="text/css">
 		</style>
@@ -36,8 +36,8 @@
 					<i class="fa fa-bars"></i> Menú
 					</button>
 					<div class="navbar-brand">
-						<a href="/lomas-crm/index.jsp">
-						<img src="/lomas-crm/img/logo_home.png" class="img-responsive" alt="">
+						<a href="index.jsp">
+						<img src="img/logo_home.png" class="img-responsive" alt="">
 						</a>
 					</div>
 				</div>
@@ -101,7 +101,7 @@
 									Sistema de Gestión<small></small>
 								</h1>
 								<ol class="breadcrumb">
-									<li><i class="fa fa-dashboard"></i> <a href="/lomas-crm/index.jsp">Inicio</a></li>
+									<li><i class="fa fa-dashboard"></i> <a href="index.jsp">Inicio</a></li>
 									<li class="active">Acceso denegado</li>
 								</ol>
 							</div>
@@ -114,7 +114,7 @@
 	                       	<p class="lead">No posee permisos para ingresar a esta página. Este incidente ha sido reportado.</p>
 	                       	<ul class="list-inline">
 	                           	<li>
-	                               	<a class="btn btn-default" href="/lomas-crm/index.jsp">Volver a la página de inicio</a>
+	                               	<a class="btn btn-default" href="index.jsp">Volver a la página de inicio</a>
 	                           	</li>
 	                       	</ul>
 	                   	</div>
@@ -132,7 +132,7 @@
 	            <p>De click en "Salir" para cerrar sesión.</p>
 	            <ul class="list-inline">
 	                <li>
-	                    <a href="/lomas-crm/salir" class="btn btn-green">
+	                    <a href="salir" class="btn btn-green">
 	                        <strong>Salir</strong>
 	                    </a>
 	                </li>
@@ -143,13 +143,13 @@
 	        </div>
 	    </div>
 		<!-- SCRIPTS GLOBALES -->
-		<script src="/lomas-crm/js/jquery-1.11.0.min.js"></script>
-		<script src="/lomas-crm/js/plugins/bootstrap/bootstrap.min.js"></script>
-		<script src="/lomas-crm/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/defaults.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/logout.js"></script>
-		<script src="/lomas-crm/js/flex.js"></script>
+		<script src="js/jquery-1.11.0.min.js"></script>
+		<script src="js/plugins/bootstrap/bootstrap.min.js"></script>
+		<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
+		<script src="js/plugins/popupoverlay/defaults.js"></script>
+		<script src="js/plugins/popupoverlay/logout.js"></script>
+		<script src="js/flex.js"></script>
 		<!-- DECLARACIÓN DE FUNCIONES JAVASCRIPT -->
 		<script type="text/javascript">
 		</script>

@@ -12,12 +12,12 @@
 
 		if (session.getAttribute("sesion") == null) {
 			session.invalidate();
-			response.sendRedirect("/lomas-crm/sesionExpirada.jsp");
+			response.sendRedirect("../sesionExpirada.jsp");
 		} else {
 			sesion = (Sesion_BE) session.getAttribute("sesion");
 			if (!General_BLL.tienePermiso(sesion,
 					Funciones.CAPTURAR_FOTOGRAFIA_USUARIO)) {
-				response.sendRedirect("/lomas-crm/errorpermisos.jsp");
+				response.sendRedirect("../errorpermisos.jsp");
 			}
 		}
 	} else {
@@ -32,12 +32,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Sistema de Gestión- CUB</title>
-    <link href="/lomas-crm/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/lomas-crm/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/lomas-crm/css/style.css" rel="stylesheet">
-    <link href="/lomas-crm/css/plugins.css" rel="stylesheet">
-	<link href="/lomas-crm/css/plugins/messenger/messenger.css" rel="stylesheet"> 	
-	<link href="/lomas-crm/css/plugins/messenger/messenger-theme-future.css" rel="stylesheet">
+    <link href="../css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/plugins.css" rel="stylesheet">
+	<link href="../css/plugins/messenger/messenger.css" rel="stylesheet"> 	
+	<link href="../css/plugins/messenger/messenger-theme-future.css" rel="stylesheet">
 </head>
 <body>
     <div id="wrapper">
@@ -47,8 +47,8 @@
                     <i class="fa fa-bars"></i> Menú
                 </button>
                 <div class="navbar-brand">
-                    <a href="/lomas-crm/index.jsp">
-                        <img src="/lomas-crm/img/logo_home.png" class="img-responsive" alt="">
+                    <a href="../index.jsp">
+                        <img src="../img/logo_home.png" class="img-responsive" alt="">
                     </a>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                                 <small></small>
                             </h1>
                             <ol class="breadcrumb">
-                                <li><i class="fa fa-dashboard"></i>  <a href="/lomas-crm/index.jsp">Inicio</a>
+                                <li><i class="fa fa-dashboard"></i>  <a href="../index.jsp">Inicio</a>
                                 </li>
                                 <li ><a href="listarUsuario.jsp">Listar Usuarios</a></li>
                                 <li class="active">Capturar imagen</li>
@@ -144,7 +144,7 @@
 											<tr>
 												<td>
 													<video style="display:none; float: right; width:320px;height: 240px;" id="camara" autoplay></video>
-													<div id="camarita" style="background-image:url('/lomas-crm/imagenes?t=1&f=camara.png'); float: right; width:320px;height: 240px;" ></div>
+													<div id="camarita" style="background-image:url('../imagenes?t=1&f=camara.png'); float: right; width:320px;height: 240px;" ></div>
 												</td>
 												<td>
 													<canvas style="display:none;float: right; width:320px;height: 240px;"  id="foto"></canvas>
@@ -208,7 +208,7 @@
             <p>De click en "Salir" para cerrar sesión.</p>
             <ul class="list-inline">
                 <li>
-                    <a href="/lomas-crm/salir" class="btn btn-green">
+                    <a href="../salir" class="btn btn-green">
                         <strong>Salir</strong>
                     </a>
                 </li>
@@ -219,29 +219,29 @@
         </div>
     </div>
     <!-- GLOBAL SCRIPTS -->
-    <script src="/lomas-crm/js/jquery-1.11.0.min.js"></script>
-    <script src="/lomas-crm/js/plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="/lomas-crm/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="/lomas-crm/js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
-    <script src="/lomas-crm/js/plugins/popupoverlay/defaults.js"></script>
-    <script type="text/javascript" src="/lomas-crm/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
+    <script src="../js/plugins/popupoverlay/defaults.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui-1.10.4.min.js"></script>
     
-<script src="/lomas-crm/js/plugins/messenger/messenger.min.js"></script>
-<script src="/lomas-crm/js/plugins/messenger/messenger-theme-future.js"></script>
+<script src="../js/plugins/messenger/messenger.min.js"></script>
+<script src="../js/plugins/messenger/messenger-theme-future.js"></script>
     
     <!-- Logout Notification Box -->
     
     <!-- /#logout -->
     <!-- Logout Notification jQuery -->
-    <script src="/lomas-crm/js/plugins/popupoverlay/logout.js"></script>
+    <script src="../js/plugins/popupoverlay/logout.js"></script>
     <!-- HISRC Retina Images -->
 
-    <!--script src="/lomas-crm/js/plugins/hisrc/hisrc.js"></script-->
+    <!--script src="../js/plugins/hisrc/hisrc.js"></script-->
 
     <!-- PAGE LEVEL PLUGIN SCRIPTS -->
 
     <!-- THEME SCRIPTS -->
-    <script src="/lomas-crm/js/flex.js"></script>
+    <script src="../js/flex.js"></script>
 	var img;
     <!--Llamada asíncrona al servidor-->
     <script type="text/javascript">
@@ -261,7 +261,7 @@
    	{
     	
     
-  		$('#preImagen').attr('src','/lomas-crm/imagenes?t=1&f=<%out.print(request.getParameter("imagen")); %>');
+  		$('#preImagen').attr('src','../imagenes?t=1&f=<%out.print(request.getParameter("imagen")); %>');
     	
   		obtenerAdvertencia('info', 'Haga clic en iniciar para encender la cámara web');
     	
@@ -362,7 +362,7 @@
 		usuario : id,
 		operacion:1
 	};
-	$.post('/lomas-crm/guardararchivo',datos, callbackGuardarArchivo,'json');
+	$.post('../guardararchivo',datos, callbackGuardarArchivo,'json');
 	function callbackGuardarArchivo(respuesta) {
 	//Se obtiene la respuesta del servidor de archivos
 	console.log(respuesta);
@@ -370,7 +370,7 @@
 			
 			var foto = respuesta.foto;
 			var datos2 = {"foto": foto,"id" : id,op:8};
-			$.post('/lomas-crm/usuario',datos2, callbackActualizarImagen,'json');
+			$.post('../usuario',datos2, callbackActualizarImagen,'json');
 			function callbackActualizarImagen(respuesta2) {
 				
 				$("#btn-guardar").prop("disabled",false);
@@ -393,7 +393,7 @@
 
 														} else if (respuesta.resultado == "-101") {
 															// No tiene permisos
-															window.location.href = "/lomas-crm/errorpermisos.jsp";
+															window.location.href = "../errorpermisos.jsp";
 														} else {
 															obtenerAdvertencia(
 																	'error',
@@ -431,7 +431,7 @@
 				</div>
 				<div class="modal-body">La sesión ha expirado. Debe iniciar sesión de nuevo para continuar trabajando</div>
 				<div class="modal-footer">
-					<a href="/lomas-crm/ingreso.jsp">
+					<a href="../ingreso.jsp">
 						<button type="button" class="btn btn-primary">Iniciar sesión</button>
 					</a>
 				</div>

@@ -8,13 +8,13 @@
 	String id = "";
 	if(session.getAttribute("sesion") == null){
 		session.invalidate();
-		response.sendRedirect("/lomas-crm/sesionExpirada.jsp");
+		response.sendRedirect("../sesionExpirada.jsp");
 	}
 	else
 	{
 		sesion = (Sesion_BE) session.getAttribute("sesion");
 		if(!General_BLL.tienePermiso(sesion,Funciones.LISTAR_INGRESO)){
-			response.sendRedirect("/lomas-crm/errorpermisos.jsp");
+			response.sendRedirect("../errorpermisos.jsp");
 		}
 		id = String.valueOf(sesion.se_usuario);
 	}
@@ -26,13 +26,13 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<title>Sistema de Gestión- CUB</title>
-		<link href="/lomas-crm/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/lomas-crm/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins/bootstrap-datepicker/datepicker3.css" rel="stylesheet">
-		<link href="/lomas-crm/css/style.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins/messenger/messenger.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins/messenger/messenger-theme-future.css" rel="stylesheet">
+		<link href="../css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/plugins/bootstrap-datepicker/datepicker3.css" rel="stylesheet">
+		<link href="../css/style.css" rel="stylesheet">
+		<link href="../css/plugins.css" rel="stylesheet">
+		<link href="../css/plugins/messenger/messenger.css" rel="stylesheet">
+		<link href="../css/plugins/messenger/messenger-theme-future.css" rel="stylesheet">
 		
 		<!-- ESTILOS PERSONALIZADOS-->
 		<style type="text/css">
@@ -47,8 +47,8 @@
 					<i class="fa fa-bars"></i> Menú
 					</button>
 					<div class="navbar-brand">
-						<a href="/lomas-crm/index.jsp">
-						<img src="/lomas-crm/img/logo_home.png" class="img-responsive" alt="">
+						<a href="../index.jsp">
+						<img src="../img/logo_home.png" class="img-responsive" alt="">
 						</a>
 					</div>
 				</div>
@@ -111,7 +111,7 @@
 								<h1>Dirección de vecinos<small></small>
 								</h1>
 								<ol class="breadcrumb">
-									<li><i class="fa fa-dashboard"></i>  <a href="/lomas-crm/index.jsp">Inicio</a>
+									<li><i class="fa fa-dashboard"></i>  <a href="../index.jsp">Inicio</a>
 									</li>
 									<li class="active">Listar Dirección</li>
 								</ol>
@@ -377,7 +377,7 @@
 	            <p>De click en "Salir" para cerrar sesión.</p>
 	            <ul class="list-inline">
 	                <li>
-	                    <a href="/lomas-crm/salir"  class="btn btn-green">
+	                    <a href="../salir"  class="btn btn-green">
 	                        <strong>Salir</strong>
 	                    </a>
 	                </li>
@@ -389,23 +389,23 @@
 	    </div>
 		<!-- SCRIPTS GLOBALES -->
 		
-		<script src="/lomas-crm/js/jquery-1.11.0.min.js"></script>
-		<script src="/lomas-crm/js/angular/angular.min.js"></script>
-		<script src="/lomas-crm/js/angular/Modules/angular-sanitize.js"></script>
-		<script src="/lomas-crm/js/angular/Modules/ngMask.js"></script>
-		<script src="/lomas-crm/js/plugins/bootstrap/bootstrap.min.js"></script>
-		<script src="/lomas-crm/js/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
-		<script src="/lomas-crm/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/defaults.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/logout.js"></script>
-		<script src="/lomas-crm/js/plugins/datatables/jquery.dataTables.js"></script>
-		<script src="/lomas-crm/js/estiloTabla.js"></script>
-		<script src="/lomas-crm/js/flex.js"></script>
-		<script src="/lomas-crm/js/plugins/messenger/messenger.min.js"></script>
-		<script src="/lomas-crm/js/plugins/messenger/messenger-theme-future.js"></script>
-		<script src="/lomas-crm/js/generales.js"></script>
-		<script src="/lomas-crm/js/garita/listarDireccion.js"></script>
+		<script src="../js/jquery-1.11.0.min.js"></script>
+		<script src="../js/angular/angular.min.js"></script>
+		<script src="../js/angular/Modules/angular-sanitize.js"></script>
+		<script src="../js/angular/Modules/ngMask.js"></script>
+		<script src="../js/plugins/bootstrap/bootstrap.min.js"></script>
+		<script src="../js/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
+		<script src="../js/plugins/popupoverlay/defaults.js"></script>
+		<script src="../js/plugins/popupoverlay/logout.js"></script>
+		<script src="../js/plugins/datatables/jquery.dataTables.js"></script>
+		<script src="../js/estiloTabla.js"></script>
+		<script src="../js/flex.js"></script>
+		<script src="../js/plugins/messenger/messenger.min.js"></script>
+		<script src="../js/plugins/messenger/messenger-theme-future.js"></script>
+		<script src="../js/generales.js"></script>
+		<script src="../js/garita/listarDireccion.js"></script>
 		<!-- DECLARACIÃN DE FUNCIONES JAVASCRIPT -->
 		
 		<script type="text/javascript">
@@ -426,7 +426,7 @@
 				</div>
 				<div class="modal-body">La sesión ha expirado. Debe iniciar sesión de nuevo para continuar trabajando</div>
 				<div class="modal-footer">
-					<a href="/lomas-crm/ingreso.jsp">
+					<a href="../ingreso.jsp">
 						<button type="button" class="btn btn-primary">Iniciar sesión</button>
 					</a>
 				</div>

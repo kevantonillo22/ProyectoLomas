@@ -222,6 +222,7 @@ public class Direccion extends HttpServlet {
 		}
 		// Crear una caja chica a traves de la BLL
 		
+		busqueda.di_estado = 1;
 		resultados = Direccion_BLL.listar(busqueda);
 		
 		String av = busqueda.di_calle_av == 2 ? "calle":"avenida"; 

@@ -302,7 +302,7 @@ function guardarCaja(){
 		txt_boton = botones.guardar.html();
 		botones.guardar.html(' Espere <i class="fa fa-spinner fa-spin"></i>');
 		botones.guardar.prop('disabled', true);
-		$.post('/lomas-crm/caja', parametros, callbackGuardarCaja, 'json');
+		$.post('../caja', parametros, callbackGuardarCaja, 'json');
 	}
 }
 
@@ -344,7 +344,7 @@ function cargarValorParametro(){
 	var parametros = {};
 	parametros.operacion = 1;
 	parametros.id = 15;
-	$.post('/lomas-crm/caja', parametros, callbackCargarValorParametro, 'json');
+	$.post('../caja', parametros, callbackCargarValorParametro, 'json');
 }
 
 
@@ -480,7 +480,7 @@ function mostrarVistaDatos(){
 	$("#btn-ver").html('<b> Espere <i class="fa fa-spinner fa-spin"></i></b>');
 	$("#btn-ver").prop("disabled", true);
 	console.log(parametros);
-	$.post('/lomas-crm/caja',parametros,callbackMostrarVistaDatos,'json');
+	$.post('../caja',parametros,callbackMostrarVistaDatos,'json');
 	
 }
 

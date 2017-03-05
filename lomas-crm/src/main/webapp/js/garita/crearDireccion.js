@@ -38,7 +38,7 @@ app.controller('crear', function($scope,$http) {
 		console.log(parametros);
     	$http({
             method: "POST",
-            url: "/lomas-crm/direccion",
+            url: "../direccion",
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'dataType': 'json'

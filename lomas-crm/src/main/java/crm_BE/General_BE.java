@@ -28,6 +28,7 @@ public class General_BE {
 	public static final String CHEQUE_IMAGENES="C:\\lomas-crm\\imagenes\\che";
 	public static final String INGRESO_IMAGENES="C:\\lomas-crm\\imagenes\\ingreso";
 	
+	public static final String ROOT_PATH = "/";
 	
 	
 	//Pruebas en UNIX

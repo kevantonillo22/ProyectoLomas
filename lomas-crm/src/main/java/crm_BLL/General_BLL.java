@@ -265,7 +265,7 @@ public class General_BLL {
 		
 		if (sesion.se_rol != -2 && sesion.se_rol != -3) {
 			respuesta = respuesta + "<li>\r\n"
-            + "<a href=\"/lomas-crm/cambiarContrasenia.jsp\">\r\n"
+            + "<a href=\"/cambiarContrasenia.jsp\">\r\n"
             +    "<i class=\"fa fa-lock\"></i> Cambiar contraseña\r\n"
             + "</a>\r\n"
             + "</li>\r\n";

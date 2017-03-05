@@ -6,14 +6,14 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<title></title>
-		<link href="/lomas-crm/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/lomas-crm/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-		<link href="/lomas-crm/css/style.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins.css" rel="stylesheet">
-		<link href="/lomas-crm/css/demo.css" rel="stylesheet">
+		<link href="css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/plugins.css" rel="stylesheet">
+		<link href="css/demo.css" rel="stylesheet">
 		<style type="text/css">
 		.fondo-login{
-		/*background-image: url('/lomas-crm/img/widget-bg-afternoon.jpg');
+		/*background-image: url('img/widget-bg-afternoon.jpg');
 		background-position: center;  
 		background-size: cover;  
 	    -webkit-filter: blur(3px);
@@ -32,7 +32,7 @@
 				<div class="col-md-4 col-md-offset-4">
 					<div class="login-banner text-center">
 						<div style="margin: 0 auto; width: 220px;">
-							<div style="margin-left: -33px; margin-top: 0px;"><img src="/lomas-crm/img/logo_home.png" style="width:293px;"></div>
+							<div style="margin-left: -33px; margin-top: 0px;"><img src="img/logo_home.png" style="width:293px;"></div>
 							<!-- <div style="width: 222px; /* position: relative; */ padding: -25px; margin-left: -1px;">
 								<h1> CUB</h1>
 							</div>-->
@@ -66,8 +66,8 @@
 			</div>
 		</div>
 		<!-- SCRIPTS GLOBALES -->
-		<script src="/lomas-crm/js/jquery-1.11.0.min.js"></script>
-		<script src="/lomas-crm/js/plugins/bootstrap/bootstrap.min.js"></script>
+		<script src="js/jquery-1.11.0.min.js"></script>
+		<script src="js/plugins/bootstrap/bootstrap.min.js"></script>
 		<!-- DECLARACIÓN DE FUNCIONES JAVASCRIPT -->
 		<script type="text/javascript">
 			$('#btnIngresar').click(
@@ -94,7 +94,7 @@
 
 								//Se obtiene la respuesta del servidor y se muestra la pagina
 								if (respuesta.resultado == "1") {
-									window.location.href = "/lomas-crm/index.jsp";
+									window.location.href = "index.jsp";
 
 								}else if(respuesta.resultado=="2"){
 									window.location.href = respuesta.urlRetorno;
@@ -106,7 +106,7 @@
 								$('#lblAdvertencia').html(advertenciaHTML);
 
 							}
-							$.post('/lomas-crm/ingreso', datos, callback, 'json');
+							$.post('ingreso', datos, callback, 'json');
 						}
 					}
 					$('#lblAdvertencia').html(advertenciaHTML);

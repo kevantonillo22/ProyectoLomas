@@ -139,7 +139,7 @@ public class Ingreso extends HttpServlet {
 					sesion.se_nombres = General_BLL.iniciarMayuscula(usuario.us_nombres);
 					sesion.se_apellidos = General_BLL.iniciarMayuscula(usuario.us_apellidos);
 					sesion.se_nombre = usuario.us_nombres + " " + usuario.us_apellidos;
-					sesion.se_ruta_foto = "/lomas-crm/imagenes?t=1&f=" + usuario.us_foto;
+					sesion.se_ruta_foto = General_BE.ROOT_PATH + "imagenes?t=1&f=" + usuario.us_foto;
 					
 					//Tiempo máximo de inactividad
 					parametro_inactividad.pa_codigo_parametro = Parametros.TIEMPO_MAXIMO_INACTIVIDAD_ADMINISTRATIVO;

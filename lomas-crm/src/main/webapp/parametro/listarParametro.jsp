@@ -7,13 +7,13 @@
 	Sesion_BE sesion = new Sesion_BE();
 	if(session.getAttribute("sesion") == null){
 		session.invalidate();
-		response.sendRedirect("/lomas-crm/sesionExpirada.jsp");
+		response.sendRedirect("../sesionExpirada.jsp");
 	}
 	else
 	{
 		sesion = (Sesion_BE) session.getAttribute("sesion");
 		if(!General_BLL.tienePermiso(sesion, Funciones.LISTAR_PARAMETROS)){
-			response.sendRedirect("/lomas-crm/errorpermisos.jsp");
+			response.sendRedirect("../errorpermisos.jsp");
 		}
 	}
 	
@@ -27,12 +27,12 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<title>Sistema de Gestión- CUB</title>
-		<link href="/lomas-crm/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/lomas-crm/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-		<link href="/lomas-crm/css/style.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins/messenger/messenger.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins/messenger/messenger-theme-future.css" rel="stylesheet">
+		<link href="../css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/style.css" rel="stylesheet">
+		<link href="../css/plugins.css" rel="stylesheet">
+		<link href="../css/plugins/messenger/messenger.css" rel="stylesheet">
+		<link href="../css/plugins/messenger/messenger-theme-future.css" rel="stylesheet">
 		
 		<!-- ESTILOS PERSONALIZADOS-->
 		<style type="text/css">
@@ -47,8 +47,8 @@
 					<i class="fa fa-bars"></i> Menú
 					</button>
 					<div class="navbar-brand">
-						<a href="/lomas-crm/index.jsp">
-						<img src="/lomas-crm/img/logo_home.png" class="img-responsive" alt="">
+						<a href="../index.jsp">
+						<img src="../img/logo_home.png" class="img-responsive" alt="">
 						</a>
 					</div>
 				</div>
@@ -111,7 +111,7 @@
 								<h1>Parámetros<small></small>
 								</h1>
 								<ol class="breadcrumb">
-									<li><i class="fa fa-dashboard"></i>  <a href="/lomas-crm/index.jsp">Inicio</a>
+									<li><i class="fa fa-dashboard"></i>  <a href="../index.jsp">Inicio</a>
 									</li>
 									<li class="active">Listar parámetros</li>
 								</ol>
@@ -165,7 +165,7 @@
 	            <p>De click en "Salir" para cerrar sesión.</p>
 	            <ul class="list-inline">
 	                <li>
-	                    <a href="/lomas-crm/salir"  class="btn btn-green">
+	                    <a href="../salir"  class="btn btn-green">
 	                        <strong>Salir</strong>
 	                    </a>
 	                </li>
@@ -216,18 +216,18 @@
 	    
 	    
 		<!-- SCRIPTS GLOBALES -->
-		<script src="/lomas-crm/js/jquery-1.11.0.min.js"></script>
-		<script src="/lomas-crm/js/plugins/bootstrap/bootstrap.min.js"></script>
-		<script src="/lomas-crm/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/defaults.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/logout.js"></script>
-		<script src="/lomas-crm/js/plugins/datatables/jquery.dataTables.js"></script>
-		<script src="/lomas-crm/js/estiloTabla.js"></script>
+		<script src="../js/jquery-1.11.0.min.js"></script>
+		<script src="../js/plugins/bootstrap/bootstrap.min.js"></script>
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
+		<script src="../js/plugins/popupoverlay/defaults.js"></script>
+		<script src="../js/plugins/popupoverlay/logout.js"></script>
+		<script src="../js/plugins/datatables/jquery.dataTables.js"></script>
+		<script src="../js/estiloTabla.js"></script>
 		
-		<script src="/lomas-crm/js/flex.js"></script>
-		<script src="/lomas-crm/js/plugins/messenger/messenger.min.js"></script>
-		<script src="/lomas-crm/js/plugins/messenger/messenger-theme-future.js"></script>
+		<script src="../js/flex.js"></script>
+		<script src="../js/plugins/messenger/messenger.min.js"></script>
+		<script src="../js/plugins/messenger/messenger-theme-future.js"></script>
 		
 		<!-- DECLARACIÃN DE FUNCIONES JAVASCRIPT -->
 		<script type="text/javascript">
@@ -260,7 +260,7 @@
 				"id": id,
 				"op": "1"
 			};
-			$.post('/lomas-crm/parametro', datos, callback2, 'json');
+			$.post('../parametro', datos, callback2, 'json');
 
 			function callback2(respuesta) {
 				if(respuesta){
@@ -276,7 +276,7 @@
 
 					} else if (respuesta.resultado == "-101") {
 						// No tiene permisos
-						window.location.href = "/lomas-crm/errorpermisos.jsp";
+						window.location.href = "../errorpermisos.jsp";
 					}else{
 						obtenerAdvertencia('error', respuesta.descripcion);
 					}
@@ -293,7 +293,7 @@
 			// CARGA TABLA DE DATOS
 			function cargarTabla(){
 				table = $('#example').DataTable({
-					"ajax": {	"url": "/lomas-crm/parametro",
+					"ajax": {	"url": "../parametro",
 								"dataType": "json",
 				            	"data": function ( d ) {d.op = "1";},
 								"type": "POST"},
@@ -381,7 +381,7 @@
 				if(datos.valor.length>0){
 					$("#btn-guardar").html(' Espere <i class="fa fa-spinner fa-spin"></i>');
 					$("#btn-guardar").prop("disabled", true);
-				$.post('/lomas-crm/parametro', datos, callback2, 'json');
+				$.post('../parametro', datos, callback2, 'json');
 				}else{
 					obtenerAdvertencia("error", "No se puede guardar un parámetro vacío");
 					
@@ -409,7 +409,7 @@
 
 					} else if (respuesta.resultado == "-101") {
 						// No tiene permisos
-						window.location.href = "/lomas-crm/errorpermisos.jsp";
+						window.location.href = "../errorpermisos.jsp";
 					}else{
 						obtenerAdvertencia('error', respuesta.descripcion);
 					}
@@ -441,7 +441,7 @@
 						</div>
 						<div class="modal-body">La sesión ha expirado. Debe iniciar sesión de nuevo para continuar trabajando</div>
 						<div class="modal-footer">
-							<a href="/lomas-crm/ingreso.jsp">
+							<a href="../ingreso.jsp">
 								<button type="button" class="btn btn-primary">Iniciar sesión</button>
 							</a>
 						</div>

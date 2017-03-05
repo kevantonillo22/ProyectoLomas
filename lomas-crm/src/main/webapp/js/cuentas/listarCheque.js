@@ -42,7 +42,7 @@ function inicializar(){
 	modal_modificar.imagen = new Dropzone('#txtFile', {
 		addRemoveLinks: true,
 		acceptedFiles: 'image/*',
-		url: "/lomas-crm/cheque" ,
+		url: "../cheque" ,
 		autoDiscover : false,
 		autoProcessQueue:false,
 		maxFiles:1,
@@ -184,7 +184,7 @@ function listarCheques(){
 		table = $('#example').DataTable({
 		 "ajax": 
 		 {	
-			 "url": "/lomas-crm/cheque",
+			 "url": "../cheque",
 			 "data": 
 				 function ( d ) {
 				 	d.operacion = 1;
@@ -411,7 +411,7 @@ function validarFormModificarCheque(){
 		parametros.numero	= modal_modificar.numero.val();
 		parametros.id		= modal_modificar.id.val();
 		
-		$.post('/lomas-crm/cheque', parametros, callbackValidarFormModificarCheque, 'json');
+		$.post('../cheque', parametros, callbackValidarFormModificarCheque, 'json');
 		txt_btn_guardar_cheque = modal_modificar.boton.html();
 		modal_modificar.boton.html( ' Espere <i class="fa fa-spinner fa-spin"></i>');
 		modal_modificar.boton.prop("disabled", true);
@@ -477,7 +477,7 @@ function cargarModificarCheque(data){
 	var parametros = {};
 	parametros.operacion = 3;
 	parametros.numero = data.numero;
-	$.post('/lomas-crm/cheque',parametros,callbackCargarModificarCheque,'json');
+	$.post('../cheque',parametros,callbackCargarModificarCheque,'json');
 }
 
 
@@ -547,7 +547,7 @@ function mostrarVistaDatos(data){
 	$("#btn-ver").html('<b> Espere <i class="fa fa-spinner fa-spin"></i></b>');
 	$("#btn-ver").prop("disabled", true);
 	console.log(parametros);
-	$.post('/lomas-crm/cheque',parametros,callbackMostrarVistaDatos,'json');
+	$.post('../cheque',parametros,callbackMostrarVistaDatos,'json');
 	
 }
 
@@ -590,7 +590,7 @@ function modificarCheque(){
 	parametros.cantidad	= modal_modificar.cantidad.val();
 	parametros.motivo	= modal_modificar.motivo.val();
 	
-	$.post('/lomas-crm/cheque', parametros, callbackModificarCheque, 'json');
+	$.post('../cheque', parametros, callbackModificarCheque, 'json');
 }
 
 

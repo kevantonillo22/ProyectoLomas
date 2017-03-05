@@ -74,7 +74,7 @@ app.controller('listar', function($scope,$http, $compile) {
 		
     	$http({
             method: "POST",
-            url: "/lomas-crm/direccion",
+            url: "../direccion",
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'dataType': 'json'
@@ -233,9 +233,9 @@ app.controller('listar', function($scope,$http, $compile) {
     
     $scope.format = function (d) {
     	$scope.id = d.id_direccion;
-    	var placa 	= '<td><img src="/lomas-crm/imagenes?t=3&f=' + d.in_imagen_placa + '" style="width:100%"></td>';
-    	var rostro 	= '<td><img src="/lomas-crm/imagenes?t=3&f=' + d.in_imagen_rostro + '" style="width:100%"></td>';
-    	var dpi 	= '<td><img src="/lomas-crm/imagenes?t=3&f=' + d.in_imagen_dpi + '" style="width:100%"></td>';
+    	var placa 	= '<td><img src="../imagenes?t=3&f=' + d.in_imagen_placa + '" style="width:100%"></td>';
+    	var rostro 	= '<td><img src="../imagenes?t=3&f=' + d.in_imagen_rostro + '" style="width:100%"></td>';
+    	var dpi 	= '<td><img src="../imagenes?t=3&f=' + d.in_imagen_dpi + '" style="width:100%"></td>';
     	
     	
     	var descartar = '';
@@ -267,7 +267,7 @@ app.controller('listar', function($scope,$http, $compile) {
 		
     	$http({
             method: "POST",
-            url: "/lomas-crm/direccion",
+            url: "../direccion",
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'dataType': 'json'
@@ -357,7 +357,7 @@ app.controller('listar', function($scope,$http, $compile) {
 		parametros.email = $scope.email;
     	$http({
             method: "POST",
-            url: "/lomas-crm/direccion",
+            url: "../direccion",
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'dataType': 'json'
@@ -419,7 +419,7 @@ app.controller('listar', function($scope,$http, $compile) {
     			console.log(parametros);
     	    	$http({
     	            method: "POST",
-    	            url: "/lomas-crm/direccion",
+    	            url: "../direccion",
     	            headers: {
     	                'Content-Type': 'application/json; charset=utf-8',
     	                'dataType': 'json'

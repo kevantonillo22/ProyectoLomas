@@ -7,13 +7,13 @@
 	Sesion_BE sesion = new Sesion_BE();
 	if(session.getAttribute("sesion") == null){
 		session.invalidate();
-		response.sendRedirect("/lomas-crm/sesionExpirada.jsp");
+		response.sendRedirect("../sesionExpirada.jsp");
 	}
 	else
 	{
 		sesion = (Sesion_BE) session.getAttribute("sesion");
 		if(!General_BLL.tienePermiso(sesion,Funciones.CREACION_DE_ROLES)){
-			response.sendRedirect("/lomas-crm/errorpermisos.jsp");
+			response.sendRedirect("../errorpermisos.jsp");
 		}
 	}
 %>
@@ -24,12 +24,12 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<title>Sistema de Gestión- CUB</title>
-		<link href="/lomas-crm/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/lomas-crm/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-		<link href="/lomas-crm/css/style.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins/messenger/messenger.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins/messenger/messenger-theme-future.css" rel="stylesheet">
+		<link href="../css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/style.css" rel="stylesheet">
+		<link href="../css/plugins.css" rel="stylesheet">
+		<link href="../css/plugins/messenger/messenger.css" rel="stylesheet">
+		<link href="../css/plugins/messenger/messenger-theme-future.css" rel="stylesheet">
 		<!-- ESTILOS PERSONALIZADOS-->
 		<style type="text/css">
 		</style>
@@ -42,8 +42,8 @@
 					<i class="fa fa-bars"></i> Menú
 					</button>
 					<div class="navbar-brand">
-						<a href="/lomas-crm/index.jsp">
-						<img src="/lomas-crm/img/logo_home.png" class="img-responsive" alt="">
+						<a href="../index.jsp">
+						<img src="../img/logo_home.png" class="img-responsive" alt="">
 						</a>
 					</div>
 				</div>
@@ -108,7 +108,7 @@
 									<small></small>
 								</h1>
 								<ol class="breadcrumb">
-									<li><i class="fa fa-dashboard"></i>  <a href="/lomas-crm/index.jsp">Inicio</a>
+									<li><i class="fa fa-dashboard"></i>  <a href="../index.jsp">Inicio</a>
 									</li>
 									<li class="active">Crear rol</li>
 								</ol>
@@ -160,7 +160,7 @@
 	            <p>De click en "Salir" para cerrar sesión.</p>
 	            <ul class="list-inline">
 	                <li>
-	                    <a href="/lomas-crm/salir"  class="btn btn-green">
+	                    <a href="../salir"  class="btn btn-green">
 	                        <strong>Salir</strong>
 	                    </a>
 	                </li>
@@ -171,15 +171,15 @@
 	        </div>
 	    </div>
 		<!-- SCRIPTS GLOBALES -->
-		<script src="/lomas-crm/js/jquery-1.11.0.min.js"></script>
-		<script src="/lomas-crm/js/plugins/bootstrap/bootstrap.min.js"></script>
-		<script src="/lomas-crm/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/defaults.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/logout.js"></script>
-		<script src="/lomas-crm/js/plugins/messenger/messenger.min.js"></script>
-		<script src="/lomas-crm/js/plugins/messenger/messenger-theme-future.js"></script>
-		<script src="/lomas-crm/js/flex.js"></script>
+		<script src="../js/jquery-1.11.0.min.js"></script>
+		<script src="../js/plugins/bootstrap/bootstrap.min.js"></script>
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
+		<script src="../js/plugins/popupoverlay/defaults.js"></script>
+		<script src="../js/plugins/popupoverlay/logout.js"></script>
+		<script src="../js/plugins/messenger/messenger.min.js"></script>
+		<script src="../js/plugins/messenger/messenger-theme-future.js"></script>
+		<script src="../js/flex.js"></script>
 		<!-- DECLARACIÓN DE FUNCIONES JAVASCRIPT -->
 		<script type="text/javascript">
 		
@@ -239,7 +239,7 @@
 										op : 1
 									};
 
-									$.post('/lomas-crm/rol', datos,
+									$.post('../rol', datos,
 											callback, 'json');
 
 									function callback(respuesta) {
@@ -258,7 +258,7 @@
 
 											} else if (respuesta.resultado == "-101") {
 												// No tiene permisos
-												window.location.href = "/lomas-crm/errorpermisos.jsp";
+												window.location.href = "../errorpermisos.jsp";
 											}else{
 												obtenerAdvertencia('error', respuesta.descripcion);
 											}
@@ -293,7 +293,7 @@
 				</div>
 				<div class="modal-body">La sesión ha expirado. Debe iniciar sesión de nuevo para continuar trabajando</div>
 				<div class="modal-footer">
-					<a href="/lomas-crm/ingreso.jsp">
+					<a href="../ingreso.jsp">
 						<button type="button" class="btn btn-primary">Iniciar sesión</button>
 					</a>
 				</div>

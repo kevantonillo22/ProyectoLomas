@@ -66,7 +66,7 @@ app.controller('listar', function($scope,$http, $compile) {
 		
     	$http({
             method: "POST",
-            url: "/lomas-crm/direccion",
+            url: "../direccion",
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'dataType': 'json'
@@ -269,7 +269,7 @@ app.controller('listar', function($scope,$http, $compile) {
 		
     	$http({
             method: "POST",
-            url: "/lomas-crm/direccion",
+            url: "../direccion",
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'dataType': 'json'
@@ -360,7 +360,7 @@ app.controller('listar', function($scope,$http, $compile) {
 		console.log(parametros);
     	$http({
             method: "POST",
-            url: "/lomas-crm/direccion",
+            url: "../direccion",
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'dataType': 'json'
@@ -422,7 +422,7 @@ app.controller('listar', function($scope,$http, $compile) {
     			console.log(parametros);
     	    	$http({
     	            method: "POST",
-    	            url: "/lomas-crm/direccion",
+    	            url: "../direccion",
     	            headers: {
     	                'Content-Type': 'application/json; charset=utf-8',
     	                'dataType': 'json'

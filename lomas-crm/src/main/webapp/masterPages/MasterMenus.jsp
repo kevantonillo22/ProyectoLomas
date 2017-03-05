@@ -15,8 +15,8 @@
 		<i class="fa fa-bars"></i> Menú
 		</button>
 		<div class="navbar-brand">
-			<a href="/lomas-crm/index.jsp">
-			<img src="/lomas-crm/img/logo_home.png" class="img-responsive" alt="">
+			<a href="../index.jsp">
+			<img src="../img/logo_home.png" class="img-responsive" alt="">
 			</a>
 		</div>
 	</div>

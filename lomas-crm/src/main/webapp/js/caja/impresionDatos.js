@@ -75,7 +75,7 @@ function cargarVistaImpresion2(data_general){
 		
 		
 		$('#frame-impresion-datos').hide();
-		$('#frame-impresion-datos').attr('src', '/lomas-crm/caja/impresionDatos.jsp?' + parametros_general);
+		$('#frame-impresion-datos').attr('src', '../caja/impresionDatos.jsp?a=1&' + parametros_general);
 		//impresionCargada=true;
 	}
 	

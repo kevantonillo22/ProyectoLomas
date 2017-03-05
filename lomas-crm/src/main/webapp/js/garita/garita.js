@@ -21,8 +21,8 @@ app.directive('myEnter', function () {
 });
 
 app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) {
-	$scope.imgDefault = '/lomas-crm/imagenes?t=1&f=default.png';
-	$scope.imgCamara = '/lomas-crm/imagenes?t=1&f=camara.png';
+	$scope.imgDefault = '../imagenes?t=1&f=default.png';
+	$scope.imgCamara = '../imagenes?t=1&f=camara.png';
 	
 	//documento
 	$scope.isShowDoc = false;
@@ -94,7 +94,7 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
 		parametros.operacion = 5;
 		$http({
             method: "POST",
-            url: "/lomas-crm/direccion",
+            url: "../direccion",
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'dataType': 'json'
@@ -276,7 +276,7 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
 		
     	$http({
             method: "POST",
-            url: "/lomas-crm/direccion",
+            url: "../direccion",
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'dataType': 'json'
@@ -353,7 +353,7 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
 		
 		$http({
             method: "POST",
-            url: "/lomas-crm/direccion",
+            url: "../direccion",
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'dataType': 'json'

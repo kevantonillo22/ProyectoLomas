@@ -19,13 +19,13 @@
 	int rol=-9999;
 	if(session.getAttribute("sesion") == null){
 		session.invalidate();
-		response.sendRedirect("/lomas-crm/sesionExpirada.jsp");
+		response.sendRedirect("../sesionExpirada.jsp");
 	}
 	else
 	{
 		sesion = (Sesion_BE) session.getAttribute("sesion");
 		if(!(General_BLL.tienePermiso(sesion,Funciones.LISTAR_CHEQUES))){
-			response.sendRedirect("/lomas-crm/errorpermisos.jsp");
+			response.sendRedirect("../errorpermisos.jsp");
 		}
 	}
 	
@@ -116,13 +116,13 @@
 	String total_efectivo	= request.getParameter("total_efectivo");
 	String variacion		= request.getParameter("variacion");
 	
-	fondo = String.format("%.2f", Float.parseFloat(fondo));
-	sumatoria = String.format("%.2f", Float.parseFloat(sumatoria));
-	total_documento = String.format("%.2f", Float.parseFloat(total_documento));
-	total_efectivo = String.format("%.2f", Float.parseFloat(total_efectivo));
-	variacion = String.format("%.2f", Float.parseFloat(variacion));
+	fondo = String.format("%.2f", Float.parseFloat(fondo)).replace(',', '.');
+	sumatoria = String.format("%.2f", Float.parseFloat(sumatoria)).replace(',', '.');
+	total_documento = String.format("%.2f", Float.parseFloat(total_documento)).replace(',', '.');
+	total_efectivo = String.format("%.2f", Float.parseFloat(total_efectivo)).replace(',', '.');
+	variacion = String.format("%.2f", Float.parseFloat(variacion)).replace(',', '.');
 	
-	DecimalFormat formatter = new DecimalFormat("#,###.00");
+	DecimalFormat formatter = new DecimalFormat("####.00");
 	fondo = formatter.format(Float.parseFloat(fondo));
 	sumatoria = formatter.format(Float.parseFloat(sumatoria));
 	total_documento = formatter.format(Float.parseFloat(total_documento));
@@ -216,7 +216,7 @@
 <html><head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Vista de impresión información cheque</title>
-	<link href="/lomas-crm/css/banco_pacientes/ficha_cita.css" rel="stylesheet">
+	<link href="../css/banco_pacientes/ficha_cita.css" rel="stylesheet">
 </head>
 <style>
 	.valor-celda{
@@ -324,69 +324,69 @@
                             	
 	                            <td class="titulo-celda">200</td>
 	                            <td class="valor-celda"><%=nodos_efectivo.get(0).ef_cantidad %></td>
-	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(0).ef_monto))) %></td>
+	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(0).ef_monto).replace(',', '.'))) %></td>
 	                            <td class="titulo-celda">1.00 </td>
 	                            <td class="valor-celda"><%=nodos_efectivo.get(7).ef_cantidad %></td>
-	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(7).ef_monto))) %></td>
+	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(7).ef_monto).replace(',', '.'))) %></td>
                         	</tr>
                         	
                         	<tr>
 	                            <td class="titulo-celda">100</td>
 	                            <td class="valor-celda"><%=nodos_efectivo.get(1).ef_cantidad %></td>
-	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(1).ef_monto))) %></td>
+	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(1).ef_monto).replace(',', '.'))) %></td>
 	                            <td class="titulo-celda">0.50 </td>
 	                            <td class="valor-celda"><%=nodos_efectivo.get(8).ef_cantidad %></td>
-	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(8).ef_monto))) %></td>
+	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(8).ef_monto).replace(',', '.'))) %></td>
                         	</tr>
                         	
                         	<tr>
 	                            <td class="titulo-celda">50</td>
 	                            <td class="valor-celda"><%=nodos_efectivo.get(2).ef_cantidad %></td>
-	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(2).ef_monto))) %></td>
+	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(2).ef_monto).replace(',', '.'))) %></td>
 	                            <td class="titulo-celda">0.25 </td>
 	                            <td class="valor-celda"><%=nodos_efectivo.get(9).ef_cantidad %></td>
-	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(9).ef_monto))) %></td>
+	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(9).ef_monto).replace(',', '.'))) %></td>
                         	</tr>
                         	
                         	<tr>
 	                            <td class="titulo-celda">20</td>
 	                            <td class="valor-celda"><%=nodos_efectivo.get(3).ef_cantidad %></td>
-	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(3).ef_monto))) %></td>
+	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(3).ef_monto).replace(',', '.'))) %></td>
 	                            <td class="titulo-celda">0.10 </td>
 	                            <td class="valor-celda"><%=nodos_efectivo.get(10).ef_cantidad %></td>
-	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(10).ef_monto))) %></td>
+	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(10).ef_monto).replace(',', '.'))) %></td>
                         	</tr>
                         	
                         	<tr>
 	                            <td class="titulo-celda">10</td>
 	                            <td class="valor-celda"><%=nodos_efectivo.get(4).ef_cantidad %></td>
-	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(4).ef_monto))) %></td>
+	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(4).ef_monto).replace(',', '.'))) %></td>
 	                            <td class="titulo-celda">0.05 </td>
 	                            <td class="valor-celda"><%=nodos_efectivo.get(11).ef_cantidad %></td>
-	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(11).ef_monto))) %></td>
+	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(11).ef_monto).replace(',', '.'))) %></td>
                         	</tr>
                         	
                         	<tr>
 	                            <td class="titulo-celda">5</td>
 	                            <td class="valor-celda"><%=nodos_efectivo.get(5).ef_cantidad %></td>
-	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(5).ef_monto))) %></td>
+	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(5).ef_monto).replace(',', '.'))) %></td>
 	                            <td class="titulo-celda">0.01 </td>
 	                            <td class="valor-celda"><%=nodos_efectivo.get(12).ef_cantidad %></td>
-	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(12).ef_monto))) %></td>
+	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(12).ef_monto).replace(',', '.'))) %></td>
                         	</tr>
                         	
                         	<tr>
 	                            <td class="titulo-celda">1</td>
 	                            <td class="valor-celda"><%=nodos_efectivo.get(6).ef_cantidad %></td>
-	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(6).ef_monto))) %></td>
+	                            <td class="valor-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", nodos_efectivo.get(6).ef_monto).replace(',', '.'))) %></td>
 	                            <td class="valor-celda" colspan="3"></td>
                         	</tr>
                         	
                         	<tr>
 	                            <td class="titulo-celda" colspan="2" style="text-align:right;">Subtotal</td>
-	                            <td class="titulo-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", subTotalBillete))) %></td>
+	                            <td class="titulo-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", subTotalBillete).replace(',', '.'))) %></td>
 	                            <td class="titulo-celda" colspan="2" style="text-align:right;">Subtotal</td>
-	                            <td class="titulo-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", subTotalMoneda))) %></td>
+	                            <td class="titulo-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", subTotalMoneda).replace(',', '.'))) %></td>
                         	</tr>
                         </tbody>
                     </table>
@@ -409,7 +409,7 @@
                         			String tipo = "";
                         			out.print("<td class=\"titulo-celda\">" + nodos_documento.get(i).do_nit + "</td>");
                         			out.print("<td class=\"valor-celda\">"+nodos_documento.get(i).do_nombre+"</td>");
-                        			out.print("<td class=\"valor-celda\">"+formatter.format(Float.parseFloat(String.format("%.2f", nodos_documento.get(i).do_monto)))+"</td>");
+                        			out.print("<td class=\"valor-celda\">"+formatter.format(Float.parseFloat(String.format("%.2f", nodos_documento.get(i).do_monto).replace(',', '.')))+"</td>");
                         			out.print("<tr>");
                         			out.print("</tr>");
                         		}
@@ -418,7 +418,7 @@
                             <tr>
                             	
 	                            <td class="titulo-celda" colspan="2" style="text-align:right;">Subtotal</td>
-	                            <td class="titulo-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", subTotalDocumento))) %></td>
+	                            <td class="titulo-celda"><%=formatter.format(Float.parseFloat(String.format("%.2f", subTotalDocumento).replace(',', '.'))) %></td>
 	                        </tr>
 	                        
 	                        <tr style="border-top: solid 3px;">
@@ -471,11 +471,11 @@
  
                <div class="grupo-botones">
                    <div class="boton" style="cursor:pointer;color:white;" onclick="print();">
-                   		<div class="img-icon" style="background-image: url('/lomas-crm/img/printer.png');"></div>
+                   		<div class="img-icon" style="background-image: url('../img/printer.png');"></div>
                    	</div>
                    
                <div class="boton"  style="cursor:pointer;color:white "onclick="parent.ocultarVistaImpresion2();" >
-					<div class="img-icon" style="background-image: url('/lomas-crm/img/salir.png');"></div>
+					<div class="img-icon" style="background-image: url('../img/salir.png');"></div>
 				</div>
                </div>
  
@@ -495,6 +495,6 @@
 	anchuraMedia=999999;
 	var pieza_actual=false;
 	</script>
-<script src="/lomas-crm/js/jquery-1.11.0.min.js"></script>
-<script src="/lomas-crm/js/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="../js/jquery-1.11.0.min.js"></script>
+<script src="../js/plugins/bootstrap/bootstrap.min.js"></script>
 </html>

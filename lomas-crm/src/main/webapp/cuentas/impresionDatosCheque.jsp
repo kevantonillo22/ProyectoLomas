@@ -15,13 +15,13 @@
 	int rol=-9999;
 	if(session.getAttribute("sesion") == null){
 		session.invalidate();
-		response.sendRedirect("/lomas-crm/sesionExpirada.jsp");
+		response.sendRedirect("../sesionExpirada.jsp");
 	}
 	else
 	{
 		sesion = (Sesion_BE) session.getAttribute("sesion");
 		if(!(General_BLL.tienePermiso(sesion,Funciones.LISTAR_CHEQUES))){
-			response.sendRedirect("/lomas-crm/errorpermisos.jsp");
+			response.sendRedirect("../errorpermisos.jsp");
 		}
 	}
 	
@@ -31,13 +31,13 @@
 	String fecha		 = request.getParameter("fecha");
 	String nombre		 = request.getParameter("nombre");
 	String cantidad		 = request.getParameter("cantidad");
-	cantidad = String.format("%.2f", Float.parseFloat(cantidad));
-	DecimalFormat formatter = new DecimalFormat("#,###.00");
-	cantidad = formatter.format(Float.parseFloat(cantidad));
+	//cantidad = String.format("%.2f", Float.parseFloat(cantidad)).replace(',', '.');
+	DecimalFormat formatter = new DecimalFormat("####.00");
+	cantidad = formatter.format(Float.parseFloat(cantidad)).replace(',', '.');
 	String motivo		 = request.getParameter("motivo");
 	String imagen		 = request.getParameter("imagen");
 	
-	imagen = "/lomas-crm/imagenes?t=2&f=" + imagen;
+	imagen = "../imagenes?t=2&f=" + imagen;
 	
 	DateFormat sdf2 = null;
 	Date dteFecha2 = null;
@@ -157,7 +157,7 @@
 <html><head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Vista de impresión información cheque</title>
-	<link href="/lomas-crm/css/banco_pacientes/ficha_cita.css" rel="stylesheet">
+	<link href="../css/banco_pacientes/ficha_cita.css" rel="stylesheet">
 </head>
 <style>
 	.valor-celda{
@@ -279,11 +279,11 @@
  
                <div class="grupo-botones">
                    <div class="boton" style="cursor:pointer;color:white;" onclick="print();">
-                   		<div class="img-icon" style="background-image: url('/lomas-crm/img/printer.png');"></div>
+                   		<div class="img-icon" style="background-image: url('../img/printer.png');"></div>
                    	</div>
                    
                <div class="boton"  style="cursor:pointer;color:white "onclick="parent.ocultarVistaImpresion2();" >
-					<div class="img-icon" style="background-image: url('/lomas-crm/img/salir.png');"></div>
+					<div class="img-icon" style="background-image: url('../img/salir.png');"></div>
 				</div>
                </div>
  
@@ -303,6 +303,6 @@
 	anchuraMedia=999999;
 	var pieza_actual=false;
 	</script>
-<script src="/lomas-crm/js/jquery-1.11.0.min.js"></script>
-<script src="/lomas-crm/js/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="../js/jquery-1.11.0.min.js"></script>
+<script src="../js/plugins/bootstrap/bootstrap.min.js"></script>
 </html>

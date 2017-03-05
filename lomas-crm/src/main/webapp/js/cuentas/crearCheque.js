@@ -50,7 +50,7 @@ function inicializar(){
 	guardar_cheque.imagen_cheque = new Dropzone('#txtFile', {
 		addRemoveLinks: true,
 		acceptedFiles: 'image/*',
-		url: "/lomas-crm/cheque" ,
+		url: "../cheque" ,
 		autoDiscover : false,
 		autoProcessQueue:false,
 		maxFiles:1,
@@ -210,7 +210,7 @@ function guardarCheque1(){
 		parametros.operacion = 2;
 		parametros.numero = guardar_cheque.numero.val();
 		
-		$.post('/lomas-crm/cheque', parametros, callbackGuardarCheque1, 'json');
+		$.post('../cheque', parametros, callbackGuardarCheque1, 'json');
 		txt_btn_guardar_cheque = guardar_cheque.boton.html();
 		guardar_cheque.boton.html( ' Espere <i class="fa fa-spinner fa-spin"></i>');
 		guardar_cheque.boton.prop("disabled", true);
@@ -318,7 +318,7 @@ function mostrarVistaDatos(){
 	$("#btn-ver").html('<b> Espere <i class="fa fa-spinner fa-spin"></i></b>');
 	$("#btn-ver").prop("disabled", true);
 	console.log(parametros);
-	$.post('/lomas-crm/cheque',parametros,callbackMostrarVistaDatos,'json');
+	$.post('../cheque',parametros,callbackMostrarVistaDatos,'json');
 	
 }
 

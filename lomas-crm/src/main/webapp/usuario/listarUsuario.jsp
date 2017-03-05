@@ -7,13 +7,13 @@
 	Sesion_BE sesion = new Sesion_BE();
 	if(session.getAttribute("sesion") == null){
 		session.invalidate();
-		response.sendRedirect("/lomas-crm/sesionExpirada.jsp");
+		response.sendRedirect("../sesionExpirada.jsp");
 	}
 	else
 	{
 		sesion = (Sesion_BE) session.getAttribute("sesion");
 		if(!General_BLL.tienePermiso(sesion, Funciones.LISTAR_USUARIO)){
-			response.sendRedirect("/lomas-crm/errorpermisos.jsp");
+			response.sendRedirect("../errorpermisos.jsp");
 		}
 	}
 	
@@ -31,13 +31,13 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<title>Sistema de Gestión- CUB</title>
-		<link href="/lomas-crm/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/lomas-crm/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-		<link href="/lomas-crm/css/style.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins/messenger/messenger.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins/messenger/messenger-theme-future.css" rel="stylesheet">
-		<link href="/lomas-crm/css/dactilar.css" rel="stylesheet">
+		<link href="../css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="../icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link href="../css/style.css" rel="stylesheet">
+		<link href="../css/plugins.css" rel="stylesheet">
+		<link href="../css/plugins/messenger/messenger.css" rel="stylesheet">
+		<link href="../css/plugins/messenger/messenger-theme-future.css" rel="stylesheet">
+		<link href="../css/dactilar.css" rel="stylesheet">
 		<!-- ESTILOS PERSONALIZADOS-->
 		<style type="text/css">
 			.clasetest{width: 54px; }
@@ -52,8 +52,8 @@
 					<i class="fa fa-bars"></i> Menú
 					</button>
 					<div class="navbar-brand">
-						<a href="/lomas-crm/index.jsp">
-						<img src="/lomas-crm/img/logo_home.png" class="img-responsive" alt="">
+						<a href="../index.jsp">
+						<img src="../img/logo_home.png" class="img-responsive" alt="">
 						</a>
 					</div>
 				</div>
@@ -116,7 +116,7 @@
 								<h1>Usuarios<small></small>
 								</h1>
 								<ol class="breadcrumb">
-									<li><i class="fa fa-dashboard"></i><a href="/lomas-crm/index.jsp"> Inicio</a>
+									<li><i class="fa fa-dashboard"></i><a href="../index.jsp"> Inicio</a>
 									</li>
 									<li class="active">Listar usuarios</li>
 								</ol>
@@ -183,7 +183,7 @@
 	            <p>De click en "Salir" para cerrar sesión.</p>
 	            <ul class="list-inline">
 	                <li>
-	                    <a href="/lomas-crm/salir" class="btn btn-green">
+	                    <a href="../salir" class="btn btn-green">
 	                        <strong>Salir</strong>
 	                    </a>
 	                </li>
@@ -245,17 +245,17 @@
 </div>
 	    
 		<!-- SCRIPTS GLOBALES -->
-		<script src="/lomas-crm/js/jquery-1.11.0.min.js"></script>
-		<script src="/lomas-crm/js/plugins/bootstrap/bootstrap.min.js"></script>
-		<script src="/lomas-crm/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/defaults.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/logout.js"></script>
-		<script src="/lomas-crm/js/plugins/datatables/jquery.dataTables.js"></script>
-		<script src="/lomas-crm/js/estiloTabla.js"></script>
-		<script src="/lomas-crm/js/flex.js"></script>
-		<script src="/lomas-crm/js/plugins/messenger/messenger.min.js"></script>
-		<script src="/lomas-crm/js/plugins/messenger/messenger-theme-future.js"></script>
+		<script src="../js/jquery-1.11.0.min.js"></script>
+		<script src="../js/plugins/bootstrap/bootstrap.min.js"></script>
+		<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
+		<script src="../js/plugins/popupoverlay/defaults.js"></script>
+		<script src="../js/plugins/popupoverlay/logout.js"></script>
+		<script src="../js/plugins/datatables/jquery.dataTables.js"></script>
+		<script src="../js/estiloTabla.js"></script>
+		<script src="../js/flex.js"></script>
+		<script src="../js/plugins/messenger/messenger.min.js"></script>
+		<script src="../js/plugins/messenger/messenger-theme-future.js"></script>
 		<!-- DECLARACIÓN DE FUNCIONES JAVASCRIPT -->
 		<script type="text/javascript">
 		var appletCargado=false;
@@ -416,7 +416,7 @@
 				datos.dedo=dedo;
 				datos.usuario=fila.data().usuario;
 				datos.valor=bytes;
-				$.post('/lomas-crm/usuario', datos, callbackGuardado, 'json');
+				$.post('../usuario', datos, callbackGuardado, 'json');
 				$("#txtBloque").prop('disabled',true);
 				$('#txtBloque').html('Espere <i class="fa fa-spinner fa-spin"></i>');
 				function callbackGuardado(respuesta){
@@ -447,7 +447,7 @@
 			'<object id="applet" type="application/x-java-applet" height="0px" width="0px" >'+
 			'<param name="MAYSCRIPT" value="true">'+
 	  		'<param name="code" value="org.CUB.crm_clinicas.Principal"/>'+
-	  		'<param name="codebase" value="/lomas-crm/applet/codigo/">'+
+	  		'<param name="codebase" value="../applet/codigo/">'+
 	  		'<param name="archive" value="lomas-crm.jar,dpfpenrollment.jar,dpfpverification.jar,dpotapi.jar,dpotjni.jar,commons-codec-1.9.jar">'+
 	  		'<param name="separate_jvm" value="true" /> '+
 			'Necesita instalar Java'+
@@ -469,7 +469,7 @@
 			// CARGA TABLA DE DATOS
 			function cargarTabla(){
 				table = $('#example').DataTable({
-					"ajax": {	"url": "/lomas-crm/usuario",
+					"ajax": {	"url": "../usuario",
 								"dataType": "json",
 				            	"data": function (d){ 
 				            							d.filtro = $('#txtFiltro').val(), 
@@ -578,7 +578,7 @@
 						out.println("	\'</tr>\' + ");
 						out.println("	\'<tr>\' + ");
 						if(permiso_modificar) out.println("		'<td><a data-toggle=\"modal\" data-target=\"#basicModal\"  href=\"#\" onclick=\" cargarUIModificar()\"><button class=\"btn btn-default\">Modificar</button></a></td>\' + ");
-						if(permiso_captura_foto) out.println("		'<td><a href=\"/lomas-crm/usuario/capturarImagen.jsp?usuario=' + d.codigo + '&imagen='+ d.imagen + '\"><button class=\"btn btn-purple\" >Capturar fotografía</button></a></td>\' + ");						
+						if(permiso_captura_foto) out.println("		'<td><a href=\"../usuario/capturarImagen.jsp?usuario=' + d.codigo + '&imagen='+ d.imagen + '\"><button class=\"btn btn-purple\" >Capturar fotografía</button></a></td>\' + ");						
 						if(permiso_contrasenia) out.println("		'<td><a href=\"javascript:operacion(\\'' + d.usuario + '\\',' + d.codigo + ',4)\"><button class=\"btn btn-info\" >Restablecer contraseña</button></a></td>' + ");
 						if(permiso_bloquear) out.println("		'<td><a href=\"javascript:operacion(\\'' + d.usuario + '\\',' + d.codigo + ',3)\"><button class=\"btn btn-orange btn-bloquear\" >' + nombre_boton + '</button></a></td>' + ");
 						if(permiso_eliminar) out.println("		'<td><a href=\"javascript:operacion(\\'' + d.usuario + '\\',' + d.codigo + ',5)\",><button class=\"btn btn-red\" >Eliminar</button></a></td>' + ");
@@ -670,7 +670,7 @@
 						};
 
 						$("#estado").html("<center><b>Procesando <i class='fa fa-spinner fa-spin'></i></center><br>");
-						$.post('/lomas-crm/usuario', datos, callback, 'json');
+						$.post('../usuario', datos, callback, 'json');
 
 						function callback(respuesta) {
 							// Refrescar la tabla
@@ -714,7 +714,7 @@
 
 								} else if (respuesta.resultado == "-101") {
 									// No tiene permisos
-									window.location.href = "/lomas-crm/errorpermisos.jsp";
+									window.location.href = "../errorpermisos.jsp";
 								}else{
 									obtenerAdvertencia('error', respuesta.descripcion);
 								}
@@ -742,7 +742,7 @@
 					"id": id,
 					"op": "6"
 				};
-				$.post('/lomas-crm/usuario', datos, callback2, 'json');
+				$.post('../usuario', datos, callback2, 'json');
 
 				function callback2(respuesta) {
 
@@ -756,7 +756,7 @@
 					
 					// Llenar el dropdown con los roles del sistema
 					var datos_rol = {op: "2"};
-					$.post('/lomas-crm/rol', datos_rol, callback2, 'json');
+					$.post('../rol', datos_rol, callback2, 'json');
 		
 					function callback2(respuesta_rol) {
 						var nueva_opcion;
@@ -780,7 +780,7 @@
 
 					} else if (respuesta.resultado == "-101") {
 						// No tiene permisos
-						window.location.href = "/lomas-crm/errorpermisos.jsp";
+						window.location.href = "../errorpermisos.jsp";
 					}else{
 						obtenerAdvertencia('error', respuesta.descripcion);
 					}
@@ -821,7 +821,7 @@
 							if((/^([a-z ñáéíóú]{2,60})$/i.test(datos.nombre+' '+datos.apellidos))){
 									$("#btn-guardar").html(' Espere <i class="fa fa-spinner fa-spin"></i>');
 								$("#btn-guardar").prop("disabled", true);
-								$.post('/lomas-crm/usuario', datos, callback, 'json');
+								$.post('../usuario', datos, callback, 'json');
 								
 							}else{
 								
@@ -860,7 +860,7 @@
 
 											} else if (respuesta.resultado == "-101") {
 												// No tiene permisos
-												window.location.href = "/lomas-crm/errorpermisos.jsp";
+												window.location.href = "../errorpermisos.jsp";
 											}else{
 												obtenerAdvertencia('error', respuesta.descripcion);
 											}}
@@ -899,7 +899,7 @@
 					</div>
 					<div class="modal-body">La sesión ha expirado. Debe iniciar sesión de nuevo para continuar trabajando</div>
 					<div class="modal-footer">
-						<a href="/lomas-crm/ingreso.jsp">
+						<a href="../ingreso.jsp">
 							<button type="button" class="btn btn-primary">Iniciar sesión</button>
 						</a>
 					</div>

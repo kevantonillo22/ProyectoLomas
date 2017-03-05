@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%
    // New location to be redirected
-   String site = new String("/lomas-crm/ingreso.jsp");
+   String site = new String("ingreso.jsp");
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", site); 
 %>
@@ -12,10 +12,10 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<title>Sistema de Gestión- CUB</title>
-		<link href="/lomas-crm/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/lomas-crm/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-		<link href="/lomas-crm/css/style.css" rel="stylesheet">
-		<link href="/lomas-crm/css/plugins.css" rel="stylesheet">
+		<link href="css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/plugins.css" rel="stylesheet">
 		<!-- ESTILOS PERSONALIZADOS-->
 		<style type="text/css">
 		</style>
@@ -36,13 +36,13 @@
              </div>
 		</div>
 		<!-- SCRIPTS GLOBALES -->
-		<script src="/lomas-crm/js/jquery-1.11.0.min.js"></script>
-		<script src="/lomas-crm/js/plugins/bootstrap/bootstrap.min.js"></script>
-		<script src="/lomas-crm/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/defaults.js"></script>
-		<script src="/lomas-crm/js/plugins/popupoverlay/logout.js"></script>
-		<script src="/lomas-crm/js/flex.js"></script>
+		<script src="js/jquery-1.11.0.min.js"></script>
+		<script src="js/plugins/bootstrap/bootstrap.min.js"></script>
+		<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="js/plugins/popupoverlay/jquery.popupoverlay.js"></script>
+		<script src="js/plugins/popupoverlay/defaults.js"></script>
+		<script src="js/plugins/popupoverlay/logout.js"></script>
+		<script src="js/flex.js"></script>
 		<!-- DECLARACIÓN DE FUNCIONES JAVASCRIPT -->
 		
 	</body>
