@@ -474,7 +474,7 @@ function listarCajas(){
 					$(this).find('td:eq(1)').css('text-align', 'center'); // Esta instrucción centra el contenido de la columna 1
 				});
 				
-				$("#example").css("display","block");
+				//$("#example").css("display","block");
 			},
 			"fnDrawCallback": function( oSettings ) {
 				//CERRAR TODAS LOS DETALLES DE LAS FILAS PARA CUANDO 
