@@ -14,9 +14,9 @@ public class General_BE {
 	
 	
 	//Pruebas en UNIX
-	public static final String PERFIL_IMAGENES="/home/kev-mint/lomas-crm/imagenes/perfil";
-	public static final String CHEQUE_IMAGENES="/home/kev-mint/lomas-crm/imagenes/che";
-	public static final String INGRESO_IMAGENES="/home/kev-mint/lomas-crm/imagenes/ingreso/";
+	//public static final String PERFIL_IMAGENES="/home/kev-mint/lomas-crm/imagenes/perfil";
+	//public static final String CHEQUE_IMAGENES="/home/kev-mint/lomas-crm/imagenes/che";
+	//public static final String INGRESO_IMAGENES="/home/kev-mint/lomas-crm/imagenes/ingreso/";
 	
 	/*public static final String RADIOLOGIA_IMAGENES = "/clinicas-crm/imagenes/radiologia";
 	public static final String ODONTOGRAMA_IMAGENES = "/clinicas-crm/imagenes/odontograma";*/
@@ -24,9 +24,9 @@ public class General_BE {
 
 	
 	//Pruebas en WINDOWS
-	//public static final String PERFIL_IMAGENES="/home/kev-mint/lomas-crm/imagenes/perfil";
-	
-	//public static final String DB_PASSWORD = "K!mb0T3Rry221234_22550624"; //"197AAB75663FD_db_FOUS4C_!"
+	public static final String PERFIL_IMAGENES="C:\\lomas-crm\\imagenes\\perfil";
+	public static final String CHEQUE_IMAGENES="C:\\lomas-crm\\imagenes\\che";
+	public static final String INGRESO_IMAGENES="C:\\lomas-crm\\imagenes\\ingreso";
 	
 	
 	
