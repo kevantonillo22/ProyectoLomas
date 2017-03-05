@@ -275,7 +275,7 @@
 						
 						$("#btn-buscar").html('Buscar&nbsp;&nbsp;<i class="fa fa-search">');
 						$("#btn-buscar").prop("disabled", false);
-						$("#example").css("display","block");
+						$("#example").show();
 				
 					}
 				});
