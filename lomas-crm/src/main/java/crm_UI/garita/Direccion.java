@@ -34,6 +34,7 @@ import crm_BE.cuentas.Efectivo_BE;
 import crm_BE.garita.Direccion_BE;
 import crm_BE.garita.Ingreso_BE;
 import crm_BLL.General_BLL;
+import crm_BLL.Parametro_BLL;
 import crm_BLL.cuentas.Caja_BLL;
 import crm_BLL.garita.Direccion_BLL;
 import crm_BLL.garita.Ingreso_BLL;
@@ -151,6 +152,17 @@ public class Direccion extends HttpServlet {
 					listarIngresoReporte(ingreso, direccion, respuesta_json, request, js);
 				}
 				break;	
+			case 7:
+				// Listar ingreso
+				if (!General_BLL.tienePermiso(sesion, Funciones.INGRESO_EGRESO)) {
+					respuesta_json.put("resultado", -101);
+					respuesta_json.put("descripcion", "Acceso denegado");
+				} else {
+					// Listar parametros del sistema
+					obtenerParametro(parametro_filtro, respuesta_json, request, js);
+				}
+				break;	
+					
 				
 			}
 		}
@@ -421,9 +433,9 @@ public class Direccion extends HttpServlet {
 		String nombreArchivoPlaca	 	= "placa_" + hash + ".png";
 		
 		//String nombreArchivo ="C:\\"+"p_"+ id + ".png";
-		File newFileDoc = new File(General_BE.INGRESO_IMAGENES + nombreArchivoDoc);
-		File newFileRostro = new File(General_BE.INGRESO_IMAGENES + nombreArchivoRostro);
-		File newFilePlaca = new File(General_BE.INGRESO_IMAGENES + nombreArchivoPlaca);
+		File newFileDoc = new File(General_BE.INGRESO_IMAGENES + "\\" + nombreArchivoDoc);
+		File newFileRostro = new File(General_BE.INGRESO_IMAGENES + "\\" + nombreArchivoRostro);
+		File newFilePlaca = new File(General_BE.INGRESO_IMAGENES + "\\" + nombreArchivoPlaca);
 		
 		byte[] imageByteArrayDoc = GuardarArchivo.decodeImage(archivoDoc.replace(
 				"data:image/png;base64,", ""));
@@ -597,4 +609,39 @@ public class Direccion extends HttpServlet {
 		respuesta.put("descripcion", "Se obtuvieron los datos correctamente");
 		
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	private void obtenerParametro(Parametro_BE parametro, JSONObject respuesta,HttpServletRequest request, JSONObject requestAngular) {
+		List<Parametro_BE> resultados;
+		
+		JSONArray tuplas = new JSONArray();
+		JSONObject js = requestAngular;
+
+		String id_parametro	= String.valueOf(js.get("id")).trim();
+		if(!id_parametro.equalsIgnoreCase("null") && !id_parametro.equalsIgnoreCase("")){
+			parametro.pa_codigo_parametro = Integer.valueOf(id_parametro);
+		}
+		
+		
+		// Solo mostrar los parámetros vigentes
+		parametro.pa_estado = 1; 
+		resultados = Parametro_BLL.listar(parametro);
+
+		for (Parametro_BE param : resultados) {
+			JSONObject tupla = new JSONObject();
+			tupla.put("id", String.valueOf(param.pa_parametro));
+			tupla.put("codigo", String.valueOf(param.pa_codigo_parametro));
+			tupla.put("nombre", String.valueOf(param.pa_nombre));
+			tupla.put("descripcion", param.pa_descripcion);
+			tupla.put("valor", param.pa_valor);
+			tupla.put("fecha_inicio", String.valueOf(param.pa_fecha_inicio).substring(0, 10));
+			tuplas.add(tupla);
+		}
+
+		respuesta.put("data", tuplas);
+		respuesta.put("resultado","1");
+	}
+	
+	
 }
