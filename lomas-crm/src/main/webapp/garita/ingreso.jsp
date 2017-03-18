@@ -6,7 +6,7 @@
 <%
 	//Valida la sesion
 	Sesion_BE sesion = new Sesion_BE();
-	
+	response.addHeader("Access-Control-Allow-Origin", "*");
 	if(session.getAttribute("sesion") == null){
 		session.invalidate();
 		response.sendRedirect("../sesionExpirada.jsp");
@@ -186,6 +186,9 @@
 									<div class="clearfix"></div>
 								</div>
 								<div class="portlet-body">
+									<img id="camaritaTamanioNormalDocumento" style="display:none;width:400px;" data-ng-src="{{imgServerNphCamaraDocumento}}" crossOrigin="anonymous" style="width:100%;" imageonload >
+									<img id="camaritaTamanioNormalRostro" style="display:none;width:400px;" data-ng-src="{{imgServerNphCamaraRostro}}" crossOrigin="anonymous" style="width:100%;" imageonload >
+									<img id="camaritaTamanioNormalPlaca" style="display:none;width:400px;" data-ng-src="{{imgServerNphCamaraPlaca}}" crossOrigin="anonymous" style="width:100%;"  imageonload >
 									
 									<div id="basicFormExample" class="panel-collapse in" style="height: auto;">
 										<div class="portlet-body" style="text-align: center;">
@@ -271,43 +274,43 @@
 															<div class="col-sm-4">
 																<label>Documento</label>
 																<video data-ng-show="isShowDoc" id="camaraDoc" style="width:100%;" class="camara" data-ng-src="{{camaraDocumento | trustUrl}}" autoplay></video>
-																<img data-ng-show="!isShowDoc" id="camarita" data-ng-src="{{imgCamara}}" style="width:100%;">
-																<button id='botonIniciar' style="width:100%;border-radius:0px;" type='button'
+																<img data-ng-show="!isShowDoc" id="camaritaDocumento" data-ng-src="{{imgServerCamaraDocumento}}" style="width:100%;" imageonload >
+																<!-- <button id='botonIniciar' style="width:100%;border-radius:0px;" type='button'
 																	class="btn btn-primary"
 																	data-ng-disabled="isDisabledBtnDoc"
 																	data-ng-click="iniciarCamaraDocumento()">
 																	Asignar cámara &nbsp;<i data-ng-class="classBtnDoc"></i>
-																</button>
+																</button>-->
 															</div>
 															<div class="col-sm-4">
 																<label>Rostro</label>
 																<video data-ng-show="isShowRostro" id="camaraRostro" style="width:100%;" class="camara" data-ng-src="{{camaraRostro | trustUrl}}" autoplay></video>
-																<img id="camarita" data-ng-show="!isShowRostro" data-ng-src="{{imgCamara}}" style="width:100%;">
-																<button id='botonIniciar' style="width:100%;border-radius:0px;" type='button'
+																<img id="camaritaRostro" data-ng-show="!isShowRostro" data-ng-src="{{imgServerCamaraRostro}}" style="width:100%;" imageonload >
+																<!--<button id='botonIniciar' style="width:100%;border-radius:0px;" type='button'
 																	class="btn btn-primary"
 																	data-ng-disabled="isDisabledBtnRostro"
 																	data-ng-click="iniciarCamaraRostro()">
 																	Asignar cámara &nbsp;<i data-ng-class="classBtnRostro"></i>
-																</button>
+																</button>-->
 															</div>
 															<div class="col-sm-4">
 																<label>Placa</label>
 																<video data-ng-show="isShowPlaca" id="camaraPlaca" style="width:100%;" class="camara" data-ng-src="{{camaraPlaca | trustUrl}}" autoplay></video>
-																<img id="camarita" data-ng-show="!isShowPlaca" data-ng-src="{{imgCamara}}" style="width:100%;">
-																<button id='botonIniciar' style="width:100%;border-radius:0px;" type='button'
+																<img id="camaritaPlaca" data-ng-show="!isShowPlaca" data-ng-src="{{imgServerCamaraPlaca}}" style="width:100%;" imageonload >
+																<!--<button id='botonIniciar' style="width:100%;border-radius:0px;" type='button'
 																	class="btn btn-primary"
 																	data-ng-disabled="isDisabledBtnPlaca"
 																	data-ng-click="iniciarCamaraPlaca()">
 																	Asignar cámara &nbsp;<i data-ng-class="classBtnPlaca"></i>
-																</button>
+																</button>-->
 															</div>
 												</div>
 												
 												<div id='botonera' style="margin-bottom:30px;margin-top:20px;">
 													<button id='botonFoto' 
-														data-ng-click="capturarImagen()" 
+														data-ng-click="getSnapshotFromServer()" 
 														type="button"
-														data-ng-disabled="!(iniciadaCamaraDoc && iniciadaCamaraRostro && iniciadaCamaraPlaca)"
+														data-ng-disabled="!(iniciadaCamaraDoc && iniciadaCamaraRostro && iniciadaCamaraPlaca) || disabledCapturar"
 														class="btn btn-success">
 														Capturar&nbsp; <span class="fa fa-camera"></span>
 													</button>
@@ -322,9 +325,13 @@
 												<div class="row capturas animate-show" style="margin-top:40px;"  data-ng-show="isShowCapturadas">
 													<label>Fotografías tomadas</label>
 													<div class="col-sm-12">
-														<canvas style="width:calc(100% / 3);margin-right: -4px;" id="fotoDoc"></canvas>
-														<canvas style="width:calc(100% / 3);margin-right: -4px;" id="fotoRostro"></canvas>
-														<canvas style="width:calc(100% / 3);" id="fotoPlaca"></canvas>
+														<canvas style="width:calc(100% / 3)-3px;margin-right: -4px;" id="fotoDoc"></canvas>
+														<canvas style="width:calc(100% / 3)-3px;margin-right: -4px;" id="fotoRostro"></canvas>
+														<canvas style="width:calc(100% / 3)-3px;" id="fotoPlaca"></canvas>
+														
+														<canvas style="display:none;" width="400" height="327" id="fotoDocOriginal"></canvas>
+														<canvas style="display:none;" width="400" height="327" id="fotoRostroOriginal"></canvas>
+														<canvas style="display:none;" width="400" height="327" id="fotoPlacaOriginal"></canvas>
 													</div>
 												</div>
 												
@@ -367,6 +374,9 @@
 									<div class="clearfix"></div>
 								</div>
 								<div class="portlet-body">
+									
+									
+									
 									<table id="tabla-ingresos" class="table-striped table-hover" style="width:100%;">
 										<tr>
 											<th>No.</th>

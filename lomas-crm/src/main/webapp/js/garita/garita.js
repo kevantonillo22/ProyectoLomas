@@ -20,9 +20,38 @@ app.directive('myEnter', function () {
     };
 });
 
+app.directive('imageonload', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            element.bind('load', function() {
+            	if(element[0].id == 'camaritaDocumento')
+            		scope.callbackLoadImageDocumento();
+            	else if(element[0].id == 'camaritaRostro')
+            		scope.callbackLoadImageRostro();
+            	else if(element[0].id == 'camaritaPlaca')
+            		scope.callbackLoadImagePlaca();
+            	else if(element[0].id == 'camaritaTamanioNormalDocumento')
+            		scope.callbackLoadNphDocumento();
+            	else if(element[0].id == 'camaritaTamanioNormalRostro')
+            		scope.callbackLoadNphRostro();
+            	else if(element[0].id == 'camaritaTamanioNormalPlaca')
+            		scope.callbackLoadNphPlaca();
+            	
+            });
+            element.bind('error', function(){
+                //alert('image could not be loaded');
+            });
+        }
+    };
+});
+
 app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) {
+	var hostServerCamara = '192.168.1.13';
 	$scope.imgDefault = '../imagenes?t=1&f=default.png';
 	$scope.imgCamara = '../imagenes?t=1&f=camara.png';
+	
+	
 	
 	//documento
 	$scope.isShowDoc = false;
@@ -71,6 +100,116 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
 	    'StreamVideo': null,
 	    'url': null
 	};
+	
+	$scope.inicializarVaribles = function(){
+		
+		var parametros = {};
+		parametros.id = 16;
+		parametros.operacion = 7;
+		$http({
+            method: "POST",
+            url: "../direccion",
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'dataType': 'json'
+            },
+            data: parametros
+        }).then(function mySucces(response) {
+        	switch(parseInt(response.data.resultado)){
+        	
+	        	case -1:
+	        		desplegarMensaje("error", response.data.descripcion, 300);
+	        		break;
+	        		
+	        	case -2:
+	        		desplegarMensaje("error", response.data.descripcion, 300);
+	        		break;
+	        		
+	        	case 1:
+	        		
+	        		hostServerCamara = response.data.data[0].valor;
+	        		
+	        		$scope.imgServerCamaraDocumento = 'http://' + hostServerCamara + ':8081';
+	        		$scope.imgServerCamaraRostro = 'http://' + hostServerCamara + ':8082';
+	        		$scope.imgServerCamaraPlaca = 'http://' + hostServerCamara + ':8083';
+	        		
+	        		$scope.cargaNphDocumento = false;
+	        		$scope.cargaNphRostro = false;
+	        		$scope.cargaNphPlaca = false;
+	        		break;
+	        		
+	        	case -100:
+	        		//Caduco
+	        		$('#sesionCaducada').modal({"backdrop":"static","keyboard":false});
+	        		break;
+	        		
+	        	case -101:
+	        		desplegarMensaje("error", response.data.descripcion, 300);
+	        		break;
+	        	case -300:
+	        		desplegarMensaje("info", response.data.descripcion, 300);
+	        		break;
+        	
+        	}
+        }, function myError(response) {
+        	desplegarMensaje("error", response.data, 300);
+        });
+		
+		
+		
+		
+		
+	}
+	
+	$scope.callbackLoadImageDocumento = function(){
+		$scope.iniciadaCamaraDoc = true;
+		$scope.$apply();
+	}
+	
+	$scope.callbackLoadImageRostro = function(){
+		$scope.iniciadaCamaraRostro = true;
+		$scope.$apply();
+	}
+	
+	$scope.callbackLoadImagePlaca = function(){
+		$scope.iniciadaCamaraPlaca = true;
+		$scope.$apply();
+	}
+	
+	
+	$scope.callbackLoadNphDocumento = function(){
+		$scope.cargaNphDocumento = true;
+		$scope.$apply();
+		if($scope.cargaNphDocumento && $scope.cargaNphRostro && $scope.cargaNphPlaca){
+			$scope.capturarImagen();
+			$scope.cargaNphDocumento = false;
+			$scope.cargaNphRostro = false;
+			$scope.cargaNphPlaca = false;
+		}
+		
+	}
+	
+	$scope.callbackLoadNphRostro = function(){
+		$scope.cargaNphRostro = true;
+		$scope.$apply();
+		if($scope.cargaNphDocumento && $scope.cargaNphRostro && $scope.cargaNphPlaca){
+			$scope.capturarImagen();
+			$scope.cargaNphDocumento = false;
+			$scope.cargaNphRostro = false;
+			$scope.cargaNphPlaca = false;
+		}
+	}
+	
+	$scope.callbackLoadNphPlaca = function(){
+		$scope.cargaNphPlaca = true;
+		$scope.$apply();
+		if($scope.cargaNphDocumento && $scope.cargaNphRostro && $scope.cargaNphPlaca){
+			$scope.capturarImagen();
+			$scope.cargaNphDocumento = false;
+			$scope.cargaNphRostro = false;
+			$scope.cargaNphPlaca = false;
+		}
+	}
 	
 	$scope.limpiar = function(){
 		$scope.numero = '';
@@ -136,7 +275,6 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
         	desplegarMensaje("error", response.data, 300);
         });
 	}
-	$scope.cargarTabla();
 	
 	$scope.iniciarCamaraDocumento = function(){
 		var clase = $scope.classBtnDoc;
@@ -149,7 +287,6 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
 	    }, function(streamVideo) {
 	        datosVideo.StreamVideo = streamVideo;
 	        datosVideo.url = window.URL.createObjectURL(streamVideo);
-	        console.log(datosVideo.url);
 	        $scope.isShowDoc = true;
 	        $scope.camaraDocumento = datosVideo.url;
 	        $scope.classBtnDoc = clase;
@@ -222,45 +359,66 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
 	    var oCamaraDoc, oFotoDoc, oContextoDoc, wDoc, hDoc;
 	    var oCamaraRostro, oFotoRostro, oContextoRostro, wRostro, hRostro;
 	    var oCamaraPlaca, oFotoPlaca, oContextoPlaca, wPlaca, hPlaca;
-
-	    //captura de documento
-	    oCamaraDoc = $('#camaraDoc');
-	    oFotoDoc = $('#fotoDoc');
-	    wDoc = oCamaraDoc.width();
-	    hDoc = oCamaraDoc.height();
-	    oFotoDoc.attr({
-	        'width': wDoc,
-	        'height': hDoc
-	    });
-	    oContextoDoc = oFotoDoc[0].getContext('2d');
-	    oContextoDoc.drawImage(oCamaraDoc[0], 0, 0, wDoc, hDoc);
 	    
-	    //captura de rostro
-	    oCamaraRostro = $('#camaraRostro');
-	    oFotoRostro = $('#fotoRostro');
-	    wRostro = oCamaraRostro.width();
-	    hRostro = oCamaraRostro.height();
-	    oFotoRostro.attr({
-	        'width': wRostro,
-	        'height': hRostro
-	    });
-	    oContextoRostro = oFotoRostro[0].getContext('2d');
-	    oContextoRostro.drawImage(oCamaraRostro[0], 0, 0, wRostro, hRostro);
+	    /*Tamanio normal*/
 	    
-	    //captura de placa
-	    oCamaraPlaca = $('#camaraPlaca');
-	    oFotoPlaca = $('#fotoPlaca');
-	    wPlaca = oCamaraPlaca.width();
-	    hPlaca = oCamaraPlaca.height();
-	    oFotoPlaca.attr({
-	        'width': wPlaca,
-	        'height': hPlaca
-	    });
-	    oContextoPlaca = oFotoPlaca[0].getContext('2d');
-	    oContextoPlaca.drawImage(oCamaraPlaca[0], 0, 0, wPlaca, hPlaca);
+	    oCamaraDoc = document.getElementById("camaritaTamanioNormalDocumento");
+	    oFotoDoc = document.getElementById("fotoDocOriginal");
+	    oContextoDoc = oFotoDoc.getContext("2d");
+	    oContextoDoc.drawImage(oCamaraDoc, 0, 0, 400, 327);
+	    
+	    oCamaraRostro = document.getElementById("camaritaTamanioNormalRostro");
+	    oFotoRostro = document.getElementById("fotoRostroOriginal");
+	    oContextoRostro = oFotoRostro.getContext("2d");
+	    oContextoRostro.drawImage(oCamaraRostro, 0, 0, 400, 327);
+	    
+	    oCamaraPlaca = document.getElementById("camaritaTamanioNormalPlaca");
+	    oFotoPlaca = document.getElementById("fotoPlacaOriginal");
+	    oContextoPlaca = oFotoPlaca.getContext("2d");
+	    oContextoPlaca.drawImage(oCamaraPlaca, 0, 0, 400, 327);
+	    
+	    
+	    oCamaraDoc = document.getElementById("camaritaDocumento");
+	    oFotoDoc = document.getElementById("fotoDoc");
+	    wDoc = oCamaraDoc.clientWidth;
+	    hDoc = oCamaraDoc.clientHeight;
+	    oFotoDoc.setAttribute("width",wDoc);
+	    oFotoDoc.setAttribute("height",hDoc);
+	    oCamaraDoc = document.getElementById("camaritaTamanioNormalDocumento");
+	    oContextoDoc = oFotoDoc.getContext("2d");
+	    oContextoDoc.drawImage(oCamaraDoc, 0, 0, wDoc, hDoc);
+	    
+	    oCamaraRostro = document.getElementById("camaritaRostro");
+	    oFotoRostro = document.getElementById("fotoRostro");
+	    wRostro = oCamaraRostro.clientWidth;
+	    hRostro = oCamaraRostro.clientHeight;
+	    oFotoRostro.setAttribute("width",wRostro);
+	    oFotoRostro.setAttribute("height",hRostro);
+	    oCamaraRostro = document.getElementById("camaritaTamanioNormalRostro");
+	    oContextoRostro = oFotoRostro.getContext("2d");
+	    oContextoRostro.drawImage(oCamaraRostro, 0, 0, wRostro, hRostro);
+	    
+	    oCamaraPlaca = document.getElementById("camaritaPlaca");
+	    oFotoPlaca = document.getElementById("fotoPlaca");
+	    wPlaca = oCamaraPlaca.clientWidth;
+	    hPlaca = oCamaraPlaca.clientHeight;
+	    oFotoPlaca.setAttribute("width",wPlaca);
+	    oFotoPlaca.setAttribute("height",hPlaca);
+	    oCamaraPlaca = document.getElementById("camaritaTamanioNormalPlaca");
+	    oContextoPlaca = oFotoPlaca.getContext("2d");
+	    oContextoPlaca.drawImage(oCamaraPlaca, 0, 0, wPlaca, hPlaca);
 	    
 	    $scope.isShowCapturadas = true;
 	    $scope.disableAlmacenarCaptura= false;
+	    $scope.disabledCapturar = false;
+	    $scope.$apply();
+	}
+	
+	$scope.getSnapshotFromServer = function(){
+		$scope.disabledCapturar = true;
+		$scope.imgServerNphCamaraDocumento = 'http://' + hostServerCamara +'/cgi-bin/nph-mjgrab?1&decache=' + Math.random();
+	    $scope.imgServerNphCamaraRostro = 'http://' + hostServerCamara +'/cgi-bin/nph-mjgrab?2&decache=' + Math.random();
+	    $scope.imgServerNphCamaraPlaca = 'http://' + hostServerCamara +'/cgi-bin/nph-mjgrab?3&decache=' + Math.random();
 	}
 	
 	$scope.buscar = function (){
@@ -285,7 +443,6 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
         }).then(function mySucces(response) {
         	$scope.claseBotonBuscar = texto;
             $scope.disableBuscar = false;
-        	console.log(response.data);
         	switch(parseInt(response.data.resultado)){
         	
 	        	case -1:
@@ -339,10 +496,12 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
         
     	
 		//Se crea un objeto para ser enviado al servidor 
-		var canDoc = document.getElementById("fotoDoc");
-		var canRostro = document.getElementById("fotoRostro");
-		var canPlaca = document.getElementById("fotoPlaca");
+		var canDoc = document.getElementById("fotoDocOriginal");
 		
+		
+		var canRostro = document.getElementById("fotoRostroOriginal");
+		var canPlaca = document.getElementById("fotoPlacaOriginal");
+		$scope.imgServerCamaraDocumento = '';
 		var parametros = {};
 		parametros.archivoDoc = canDoc.toDataURL("image/png");
 		parametros.archivoRostro = canRostro.toDataURL("image/png");
@@ -362,7 +521,6 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
         }).then(function mySucces(response) {
         	$scope.claseBotonAlmacenar = texto;
             $scope.disableAlmacenar = false;
-        	console.log(response.data);
         	switch(parseInt(response.data.resultado)){
         	
 	        	case -1:
@@ -401,5 +559,14 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
         });
 	}
 	
+	
+	
+	
+	var init = function () {
+		$scope.cargarTabla();
+		$scope.inicializarVaribles();
+	};
+	
+	init();
 	
 }]);
