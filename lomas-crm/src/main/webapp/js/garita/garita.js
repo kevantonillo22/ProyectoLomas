@@ -89,6 +89,9 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
 	
 	$scope.avenidaCalle = $scope.values[0];
 	
+	$scope.anexo = '';
+	$scope.numero = '';
+	
 	window.URL = window.URL || window.webkitURL;
 	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia ||
 	function() {
@@ -160,6 +163,15 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
 		
 		
 	}
+	
+	$scope.addZero = function(){
+     	if($scope.numero.length == 1){
+     		if(Number($scope.numero) == 0)
+     			$scope.numero = '';
+     		else
+     			$scope.numero = "0" + $scope.numero;
+     	}
+     }
 	
 	$scope.callbackLoadImageDocumento = function(){
 		$scope.iniciadaCamaraDoc = true;
@@ -429,6 +441,7 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
         var parametros = {};
 		parametros.operacion = 2;
 		parametros.numero = $scope.numero;
+		parametros.anexo = $scope.anexo;
 		parametros.avenidaCalle = $scope.avenidaCalle.id;
 		parametros.numeroCasa = $scope.numeroCasa;
 		
@@ -456,12 +469,12 @@ app.controller('controladorIngreso', ['$scope', '$http', function($scope,$http) 
 	        	case 1:
 	        		if(response.data.data.length == 0){
 	        			$scope.claseEncontrada = 'familiaNoEncontrada';
-	        			$scope.textoFamilia='No registrada <i class="fa fa-times"></i>';
-	        			$scope.textoFam = 'Familia';
+	        			$scope.textoFamilia='Dirección No registrada <i class="fa fa-times"></i>';
+	        			$scope.textoFam = '';
 	        			$scope.disableAlmacenar = true;
 	        		}else{
 	        			$scope.claseEncontrada = 'familiaEncontrada';
-	        			$scope.textoFamilia= response.data.data[0].familia + ' <i class="fa fa-check"></i>';
+	        			$scope.textoFamilia= /*response.data.data[0].familia*/'Dirección registrada' + ' <i class="fa fa-check"></i>';
 	        			$scope.id_direccion= response.data.data[0].id_direccion;
 	        			$scope.disableAlmacenar = false;
 	        		}

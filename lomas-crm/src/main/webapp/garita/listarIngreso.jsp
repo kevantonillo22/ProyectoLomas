@@ -180,7 +180,9 @@
 						                                	</div>
 															<div class="form-group col-xs-3" data-ng-class="{ 'has-error' : formulario.numeroFiltro.$invalid && !formulario.numeroFiltro.$pristine }" >
 																<label for="txtNombre">Número *</label>
-																	<input 
+																	<div class="input-group">
+																		<input 
+																		style="width:70%;"
 																		type="text" 
 																		class="form-control"  
 																		id="numero" 
@@ -189,9 +191,23 @@
 																		name="numeroFiltro"
 																		data-ng-model="numeroFiltro" 
 																		data-ng-pattern="/[0-9]+/"
+																		data-ng-blur="addZero()"
 																		mask='99?'
 																		Restrict="reject"
 																		data-ng-required="numeroCasaFiltro.length > 0">
+																		
+																		<input 
+																		style="width:30%;text-transform:uppercase;"
+																		type="text" 
+																		class="form-control"  
+																		id="anexo" 
+																		maxlength="10" 
+																		name="anexo"
+																		mask='@'
+																		Restrict="reject"
+																		data-ng-model="anexo" 
+																		title="Calle/Avenida alterna">
+																	</div>
 																</div>
 																<div class="form-group col-xs-3">
 																	<label for="txtDescripcion">Calle o Avenida *</label>
@@ -426,7 +442,7 @@
 		<script src="../js/plugins/messenger/messenger.min.js"></script>
 		<script src="../js/plugins/messenger/messenger-theme-future.js"></script>
 		<script src="../js/generales.js"></script>
-		<script src="../js/garita/listarIngreso.js"></script>
+		<script src="../js/garita/listarIngreso.js?a=1"></script>
 		<!-- DECLARACIÃN DE FUNCIONES JAVASCRIPT -->
 		
 		<script type="text/javascript">

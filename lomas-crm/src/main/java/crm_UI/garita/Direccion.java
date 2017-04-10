@@ -185,6 +185,7 @@ public class Direccion extends HttpServlet {
 		JSONObject js = requestAngular;
 		
 		String str_numero_calle_av = String.valueOf(js.get("numero")).trim();
+		String str_anexo 		= String.valueOf(js.get("anexo")).trim().toUpperCase();
 		String str_calle_av 	= String.valueOf(js.get("avenidaCalle")).trim();
 		String str_num_casa		= String.valueOf(js.get("numeroCasa")).trim();
 		String str_familia		= String.valueOf(js.get("familia")).trim();
@@ -203,6 +204,14 @@ public class Direccion extends HttpServlet {
 			direccion.di_numero_calle_av = (str_numero_calle_av);
 			busqueda.di_numero_calle_av = (str_numero_calle_av);
 		}
+		
+		//Agregamos el anexo al campo numero calle
+		if(!str_anexo.equalsIgnoreCase("null") && !str_anexo.equalsIgnoreCase("")){
+			//Se le concatena al numero
+			direccion.di_numero_calle_av = direccion.di_numero_calle_av + " " + str_anexo;
+			busqueda.di_numero_calle_av = busqueda.di_numero_calle_av + " " + str_anexo;
+		}
+		
 		if(!str_calle_av.equalsIgnoreCase("null") && !str_calle_av.equalsIgnoreCase("")){
 			direccion.di_calle_av = Integer.parseInt(str_calle_av);
 			busqueda.di_calle_av = Integer.parseInt(str_calle_av);
@@ -248,10 +257,15 @@ public class Direccion extends HttpServlet {
 		}
 		else{
 			// Respuesta JSON
+			String textoDireccion = "";
+			if(busqueda.di_numero_calle_av.split(" ").length > 1)
+				textoDireccion = busqueda.di_numero_calle_av.split(" ")[0] + " " + av + " " + busqueda.di_numero_calle_av.split(" ")[1] + " " + busqueda.di_num_casa;
+			else
+				textoDireccion = busqueda.di_numero_calle_av + " " + av  + " " + busqueda.di_num_casa;
+			
 			respuesta.put("id", "1");
 			respuesta.put("resultado", "-300");
-			respuesta.put("descripcion", "Ya fue registrada una dirección en la "  + 
-			busqueda.di_numero_calle_av + " " + av + " " + busqueda.di_num_casa);
+			respuesta.put("descripcion", "Ya fue registrada una dirección en la "  + textoDireccion);
 		}		
 	}
 	
@@ -264,6 +278,7 @@ public class Direccion extends HttpServlet {
 		JSONObject js = requestAngular;
 		
 		String str_numero_calle_av = String.valueOf(js.get("numero")).trim();
+		String str_anexo 		= String.valueOf(js.get("anexo")).trim().toUpperCase();
 		String str_calle_av 	= String.valueOf(js.get("avenidaCalle")).trim();
 		String str_num_casa		= String.valueOf(js.get("numeroCasa")).trim();
 		String str_id_direccion		= String.valueOf(js.get("id_direccion")).trim();
@@ -272,6 +287,13 @@ public class Direccion extends HttpServlet {
 			str_numero_calle_av = str_numero_calle_av.length() == 1 ? "0" + str_numero_calle_av : str_numero_calle_av;
 			busqueda.di_numero_calle_av = (str_numero_calle_av);
 		}
+		
+		//Agregamos el anexo al campo numero calle
+		if(!str_anexo.equalsIgnoreCase("null") && !str_anexo.equalsIgnoreCase("")){
+			//Se le concatena al numero
+			busqueda.di_numero_calle_av = busqueda.di_numero_calle_av + " " + str_anexo;
+		}
+		
 		if(!str_calle_av.equalsIgnoreCase("null") && !str_calle_av.equalsIgnoreCase("")){
 			busqueda.di_calle_av = Integer.parseInt(str_calle_av);
 		}
@@ -288,8 +310,16 @@ public class Direccion extends HttpServlet {
 
 		for (Direccion_BE ca : resultados) {
 			JSONObject tupla = new JSONObject();
-			String av = ca.di_calle_av == 2 ? "calle":"avenida";  
-			String direccion = ca.di_numero_calle_av + " " + av + " " + ca.di_num_casa;
+			String av = ca.di_calle_av == 2 ? "calle":"avenida"; 
+			
+			String textoDireccion = "";
+			if(ca.di_numero_calle_av.split(" ").length > 1)
+				textoDireccion = ca.di_numero_calle_av.split(" ")[0] + " " + av + " " + ca.di_numero_calle_av.split(" ")[1] + " " + ca.di_num_casa;
+			else
+				textoDireccion = ca.di_numero_calle_av + " " + av  + " " + ca.di_num_casa;
+			
+			
+			String direccion = textoDireccion;
 			String familia = ca.di_familia == null ? "": ca.di_familia;
 			String telefono = ca.di_telefono == null ? "": ca.di_telefono;
 			String nombre = ca.di_nombre_titular == null ? "": ca.di_nombre_titular;
@@ -559,6 +589,7 @@ public class Direccion extends HttpServlet {
 		
 		String in_fecha_entrada	= String.valueOf(js.get("fecha")).trim();
 		String str_numero_calle_av = String.valueOf(js.get("numeroFiltro")).trim();
+		String str_anexo 		= String.valueOf(js.get("anexo")).trim().toUpperCase();
 		String str_calle_av 	= String.valueOf(js.get("avenidaCalleFiltro")).trim();
 		String str_num_casa		= String.valueOf(js.get("numeroCasaFiltro")).trim();
 		
@@ -578,6 +609,13 @@ public class Direccion extends HttpServlet {
 		if(!str_numero_calle_av.equalsIgnoreCase("null") && !str_numero_calle_av.equalsIgnoreCase("")){
 			direccion.di_numero_calle_av = (str_numero_calle_av);
 		}
+		
+		//Agregamos el anexo al campo numero calle
+		if(!str_anexo.equalsIgnoreCase("null") && !str_anexo.equalsIgnoreCase("")){
+			//Se le concatena al numero
+			direccion.di_numero_calle_av = direccion.di_numero_calle_av + " " + str_anexo;
+		}
+				
 		if(!str_calle_av.equalsIgnoreCase("null") && !str_calle_av.equalsIgnoreCase("") && direccion.di_numero_calle_av != null){
 			direccion.di_calle_av = Integer.parseInt(str_calle_av);
 		}
@@ -593,7 +631,7 @@ public class Direccion extends HttpServlet {
 			
 			tupla.put("in_ingreso", String.valueOf(ing.in_ingreso));
 			tupla.put("in_placa", String.valueOf(ing.in_placa));
-			tupla.put("in_direccion", String.valueOf(ing.in_texto_direccion));
+			tupla.put("in_direccion", String.valueOf(ing.in_texto_direccion.replaceAll("\\s+", " ")));
 			tupla.put("in_imagen_placa", String.valueOf(ing.in_imagen_placa));
 			tupla.put("in_imagen_rostro", String.valueOf(ing.in_imagen_rostro));
 			tupla.put("in_imagen_dpi", String.valueOf(ing.in_imagen_dpi));

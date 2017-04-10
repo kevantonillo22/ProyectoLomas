@@ -17,7 +17,18 @@ app.controller('crear', function($scope,$http) {
     $scope.textoGuardar = '<i class="fa fa-check"></i> Guardar';
     $scope.disableGuardar = false;
     $scope.isAbandonada = false;
+    $scope.anexo = '';
+    $scope.numero = '';
     
+    $scope.addZero = function(){
+    	var val = $scope.numero;
+    	if($scope.numero.length == 1){
+    		if(Number($scope.numero) == 0)
+    			$scope.numero = '';
+    		else
+    			$scope.numero = "0" + $scope.numero;
+    	}
+    }
     
     $scope.guardar = function(){
     	var texto = $scope.textoGuardar;
@@ -26,6 +37,7 @@ app.controller('crear', function($scope,$http) {
     	var parametros = {};
 		parametros.operacion = 1;
 		parametros.numero = $scope.numero;
+		parametros.anexo = $scope.anexo;
 		parametros.avenidaCalle = $scope.avenidaCalle.id;
 		parametros.numeroCasa = $scope.numeroCasa;
 		parametros.familia = $scope.familia;
@@ -85,6 +97,7 @@ app.controller('crear', function($scope,$http) {
     
     $scope.limpiarFormulario = function(){
     	$scope.numero = '';
+    	$scope.anexo = '';
     	$scope.numeroCasa = '';
     	$scope.familia = '';
     	$scope.telefono = '';

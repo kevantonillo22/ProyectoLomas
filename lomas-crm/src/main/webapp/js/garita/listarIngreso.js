@@ -53,12 +53,23 @@ app.controller('listar', function($scope,$http, $compile) {
      $scope.claseBotonEditar = 'fa fa-check';
      $scope.disabledBotonEditar = false;
      
+     $scope.anexo = '';
+     
      $scope.limpiar = function(){
 		$scope.numeroFiltro ='';	
 		$scope.numeroCasaFiltro ='';
 		$scope.avenidaCalleFiltro = $scope.values[0];
 		$scope.fecha = '';
      }
+    
+     $scope.addZero = function(){
+      	if($scope.numeroFiltro.length == 1){
+      		if(Number($scope.numeroFiltro) == 0)
+      			$scope.numeroFiltro = '';
+      		else
+      			$scope.numeroFiltro = "0" + $scope.numeroFiltro;
+      	}
+      }
      
     $scope.buscar = function (){
     	var texto = $scope.textoBotonBuscar;
@@ -69,6 +80,7 @@ app.controller('listar', function($scope,$http, $compile) {
 		parametros.operacion = 6;
 		parametros.fecha = $scope.fecha;
 		parametros.numeroFiltro = $scope.numeroFiltro;
+		parametros.anexo = $scope.anexo;
 		parametros.avenidaCalleFiltro = $scope.avenidaCalleFiltro !== undefined ? $scope.avenidaCalleFiltro.id : "";
 		parametros.numeroCasaFiltro = $scope.numeroCasaFiltro;
 		

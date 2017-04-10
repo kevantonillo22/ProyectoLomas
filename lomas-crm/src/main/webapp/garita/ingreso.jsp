@@ -214,7 +214,7 @@
 													<div class="form-group col-lg-8 col-md-8">
 														<label for="txtNombre">Dirección:</label>
 														<div class="input-group">
-															<input style="width:40%;text-align:right;" 
+															<input style="width:30%;text-align:right;" 
 																data-ng-class="{'has-error': formulario.numero.$invalid && !formulario.numero.$pristine}" 
 																type="text" 
 																class="form-control" 
@@ -227,7 +227,8 @@
 																my-enter="formulario.$valid && buscar()"
 																data-ng-change="cambioTexto()"
 																data-ng-pattern="/[0-9]+/"
-																data-ng-model="numero">
+																data-ng-model="numero"
+																data-ng-blur="addZero()">
 															<select style="width:20%;" 
 																id="avenidaCalle" 
 																class="selectpicker form-control" 
@@ -236,7 +237,17 @@
 																data-ng-change="cambioTexto()"
 																data-ng-options="option.name for option in values track by option.id">
 															</select>
-														  
+														  <input 
+																style="width:10%;text-transform:uppercase;"
+																type="text" 
+																class="form-control"  
+																id="anexo" 
+																maxlength="10" 
+																name="anexo"
+																mask='@'
+																Restrict="reject"
+																data-ng-model="anexo" 
+																title="Calle/Avenida alterna">
 															<input style="margin-left:10px;width:25%;" 
 																data-ng-class="{'has-error': formulario.numeroCasa.$invalid && !formulario.numeroCasa.$pristine}" 
 																type="text" 
@@ -263,7 +274,7 @@
 														</div>
 														
 														<div data-ng-class="claseEncontrada" style="margin-top: 10px;text-align: right;font-size: 18px;height:25px;" >
-															<span style="font-weight:bolder;" data-ng-show="textoFamilia.length > 0">Familia: </span>  <span data-ng-bind-html="textoFamilia"> </span>
+															<span style="font-weight:bolder;" data-ng-show="textoFamilia.length > 0"> </span>  <span data-ng-bind-html="textoFamilia"> </span>
 														</div>
 													</div>
 													
@@ -274,7 +285,7 @@
 															<div class="col-sm-4">
 																<label>Documento</label>
 																<video data-ng-show="isShowDoc" id="camaraDoc" style="width:100%;" class="camara" data-ng-src="{{camaraDocumento | trustUrl}}" autoplay></video>
-																<img data-ng-show="!isShowDoc" id="camaritaDocumento" data-ng-src="{{imgServerCamaraDocumento}}" style="width:100%;" imageonload >
+																<img data-ng-show="!isShowDoc" id="camaritaDocumento" alt="Problemas con el servidor de camaras" data-ng-src="{{imgServerCamaraDocumento}}" style="width:100%;" imageonload >
 																<!-- <button id='botonIniciar' style="width:100%;border-radius:0px;" type='button'
 																	class="btn btn-primary"
 																	data-ng-disabled="isDisabledBtnDoc"
@@ -285,7 +296,7 @@
 															<div class="col-sm-4">
 																<label>Rostro</label>
 																<video data-ng-show="isShowRostro" id="camaraRostro" style="width:100%;" class="camara" data-ng-src="{{camaraRostro | trustUrl}}" autoplay></video>
-																<img id="camaritaRostro" data-ng-show="!isShowRostro" data-ng-src="{{imgServerCamaraRostro}}" style="width:100%;" imageonload >
+																<img id="camaritaRostro" alt="Problemas con el servidor de camaras" data-ng-show="!isShowRostro" data-ng-src="{{imgServerCamaraRostro}}" style="width:100%;" imageonload >
 																<!--<button id='botonIniciar' style="width:100%;border-radius:0px;" type='button'
 																	class="btn btn-primary"
 																	data-ng-disabled="isDisabledBtnRostro"
@@ -296,7 +307,7 @@
 															<div class="col-sm-4">
 																<label>Placa</label>
 																<video data-ng-show="isShowPlaca" id="camaraPlaca" style="width:100%;" class="camara" data-ng-src="{{camaraPlaca | trustUrl}}" autoplay></video>
-																<img id="camaritaPlaca" data-ng-show="!isShowPlaca" data-ng-src="{{imgServerCamaraPlaca}}" style="width:100%;" imageonload >
+																<img id="camaritaPlaca" alt="Problemas con el servidor de camaras" data-ng-show="!isShowPlaca" data-ng-src="{{imgServerCamaraPlaca}}" style="width:100%;" imageonload >
 																<!--<button id='botonIniciar' style="width:100%;border-radius:0px;" type='button'
 																	class="btn btn-primary"
 																	data-ng-disabled="isDisabledBtnPlaca"
@@ -502,7 +513,7 @@
 		<script src="../js/plugins/messenger/messenger-theme-future.js"></script>
 		<script src="../js/plugins/masked-input/jquery.maskedinput.min.js"></script>
 		<script src="../js/generales.js"></script>
-		<script src="../js/garita/garita.js"></script>
+		<script src="../js/garita/garita.js?a=1"></script>
 		<!-- DECLARACIÃN DE FUNCIONES JAVASCRIPT -->
 		<script type="text/javascript">
 		

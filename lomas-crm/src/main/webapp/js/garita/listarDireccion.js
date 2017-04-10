@@ -27,6 +27,7 @@ app.controller('listar', function($scope,$http, $compile) {
         {id: '2', name: 'Calle'}
     ];
 	$scope.numero ='';
+	$scope.anexo = '';
 	$scope.numeroCasa ='';
 	$scope.avenidaCalle = $scope.values[0];
 	
@@ -53,6 +54,15 @@ app.controller('listar', function($scope,$http, $compile) {
      $scope.claseBotonEditar = 'fa fa-check';
      $scope.disabledBotonEditar = false;
     
+     $scope.addZero = function(){
+     	if($scope.numeroFiltro.length == 1){
+     		if(Number($scope.numeroFiltro) == 0)
+     			$scope.numeroFiltro = '';
+     		else
+     			$scope.numeroFiltro = "0" + $scope.numeroFiltro;
+     	}
+     }
+     
     $scope.buscar = function (){
     	var texto = $scope.textoBotonBuscar;
     	$scope.textoBotonBuscar = '<i class="fa fa-spin fa-spinner"></i> Espere';
@@ -61,6 +71,7 @@ app.controller('listar', function($scope,$http, $compile) {
         var parametros = {};
 		parametros.operacion = 2;
 		parametros.numero = $scope.numeroFiltro;
+		parametros.anexo = $scope.anexo;
 		parametros.avenidaCalle = $scope.avenidaCalleFiltro !== undefined ? $scope.avenidaCalleFiltro.id : "";
 		parametros.numeroCasa = $scope.numeroCasaFiltro;
 		
